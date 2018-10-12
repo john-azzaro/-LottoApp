@@ -1,0 +1,191 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1. create files (use Open folder and then create files in that project) and name them index(best practice).
+2. From your wireframe, create the basic structre of all the pages your app will need.
+3. in index.js, create the initial function stubs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////
+lotto app day 2 before alterations
+/////////////
+
+'usestrict';
+
+function generateMainPage() {
+    //
+}
+
+function renderMainPage() {
+    //
+}
+
+function generateNumberSection(drawings) {
+    //
+}
+
+function renderNumberSection(drawings) {
+    //
+}
+
+function generateNavSection() {
+    //
+}
+
+function renderNavSection() {
+    //
+}
+
+function generateNewsSection(newsItems) {
+    //
+}
+
+function renderNewsSection(newsItems) {
+    //
+}
+
+function generateDrawingItem(drawingName, drawingDate, numbers) {
+    //
+}
+
+function renderDrawingItem(drawingName, drawingDate, numbers) {
+    //
+}
+
+function generateNumbersList(numbers) {
+    // need to use double quotes.  single quotes dont interpret so it would be a backslash and n, not a new line.
+    const numberList = numbers.map(number => {return `<li class="numberitem">${number}</li>`}).join("\n"); 
+    return `
+    <ul class="numberslist">
+        ${numberList};
+    </ul>
+    ` 
+}
+
+function renderNumbersList(numbers, container) {
+    container.append(generateNumbersList(numbers));
+}
+
+function generateCountDown(drawingName, drawingDate) {
+    const today = new Date();
+    const daysLeft = 2;
+    const hoursLeft = 2;
+    const minutesLeft = 2;
+    return `
+    <h3>Next ${drawingName} Drawing</h3>
+    <div class="countdown">
+        <span class="days">${daysLeft}</span>
+        <span class="hours">${hoursLeft}</span>
+        <span class="minutes">${minutesLeft}</span>
+    </div>
+    `
+}
+
+function renderCountDown(drawingName, drawingDate) {
+    //
+}
+
+function generateNewsItem(newsItem) {
+    //
+}
+
+function renderNewsItem(newsItem) {
+    //
+}

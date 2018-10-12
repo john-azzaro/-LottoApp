@@ -1,5 +1,8 @@
 'use strict';
 
+const POWERBALL_URL = 'https://data.ny.gov/api/views/d6yy-54nr/rows.json';
+const MEGAMILLIONS_URL = 'https://data.ny.gov/api/views/5xaw-6ayf/rows.json';
+
 const STORE = {
     drawings: [
         {name: "Powerball",
@@ -15,6 +18,43 @@ const STORE = {
 
 
 }
+
+//// API functions //////////
+/*
+need to chain one after the other, first has to pass info to the second items
+idea is to edit STORE each time and then after the scond time update the page.
+*/
+
+
+function getDataFromApi(url, success, error) {
+    const settings = {
+        url, 
+        type: 'GET',
+        dataType: 'json',
+        success,
+        error,
+    }
+    $.ajax(settings);
+}
+
+function getPowerballDataFromApi(success, error) {
+    getDataFromApi(POWERBALL_URL, success, error);
+}
+
+function getMegaMillionsDataFromApi(success, error) {
+    getDataFromApi(MEGAMILLIONS_URL, success, error);
+}
+
+function getLotteryDataFromApi(powerBallSuccess, megaMillionsSuccess, powerBallError, megaMillionsError) {
+    
+    getPowerballDataFromApi(powerBallSuccess, powerBallError);
+    getMegaMillionsDataFromApi(megaMillionsSuccess,megaMillionsError);
+}
+
+
+
+
+
 
 
 ////// GENERATE  //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -91,8 +131,8 @@ function generateDrawingItem(drawing) {
     return `
     <li id="${drawing.name.toLowerCase()}listitem">
         <h2>${drawing.name}</h2>
-            ${numberList};
-            ${countDown};
+            ${numberList}
+            ${countDown}
         <a class="neareststore" data-drawing="${drawing.name.toLowerCase()}">Find Nearest Store</a>
     </li>
     `
@@ -103,7 +143,7 @@ function generateNumbersList(numbers) {
     const numberList = numbers.map(number => { return `<li class="numberitem">${number}</li>` }).join("\n");
     return `
     <ul class="numberslist">
-        ${numberList};
+        ${numberList}
     </ul>
     `
 }
