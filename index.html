@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Lottery App</title>
+    <meta name="Lottery Application" content="Lottery Application Project">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <header></header>
+
+    <main>
+
+<!-- Main Page  -->
+<!-- Find Out More -->
+<!-- FAQ  -->
+<!-- Contact -->
+<!-- Statistics feature box  -->
+
+<!-- MAIN APP PAGE -->
+        <section id="numbersection">
+            <ul>
+                <li id="powerballlistitem">
+                    <h2>Powerball</h2>
+                    <ul class="numberslist">
+                        <li class="numberitem">15</li>
+                        <li class="numberitem">2</li>
+                        <li class="numberitem">34</li>
+                        <li class="numberitem">36</li>
+                        <li class="numberitem">29</li>
+                        <li class="numberitem">45</li>
+                        <li class="numberitem">6</li>
+                    </ul>
+                    <h3>Next Powerball Drawing</h3>
+                    <div class="countdown">
+                        <span class="days">2</span>
+                        <span class="hours">3</span>
+                        <span class="minutes">5</span>
+                    </div>
+                    <a class="neareststore" data-drawing="powerball">Find Nearest Store</a>
+                </li>
+
+                <li id="megamillionslistitem"></li>
+                    <h2>Mega Millions</h2>
+                    <ul class="numberslist">
+                        <li class="numberitem">15</li>
+                        <li class="numberitem">2</li>
+                        <li class="numberitem">34</li>
+                        <li class="numberitem">36</li>
+                        <li class="numberitem">29</li>
+                        <li class="numberitem">45</li>
+                        <li class="numberitem">6</li>
+                     </ul>
+                <h3>Next Mega Millions Drawing</h3>
+                <div class="countdown">
+                    <span class="days">2</span>
+                    <span class="hours">3</span>
+                    <span class="minutes">5</span>
+                </div>
+                <a class="neareststore" data-drawing="megamillions">Find Nearest Store</a>
+                </li>
+            </ul>
+        </section>
+
+        <section id="navsection">
+            <ul id="navlist">
+                <li class="navitem">
+                    <a class="navlink" data-drawing="powerball">Powerball History</a>
+                </li>
+                <!-- data drawing allows use of one event handler for all-->
+                <li class="navitem">
+                    <a class="navlink" data-drawing="megamillions">Mega Millions History</a>
+                </li>
+            </ul>
+
+        </section>
+
+        <section id="newssection">
+            <h2>Lotto in the News</h2>
+            <ul id="newslist">
+                <li class="newsarticle">
+                    <img class="newsimage">
+                    <h3>Headline</h3>
+                    <a class="readmorelink">Read More</a>
+                </li>
+            </ul>
+        </section>
+
+<!-- Powerball History  -->
+        <h2>Powerball History</h2>
+        <ol>
+            <li>
+                <h3>Date</h3>
+                <ul class="numberslist">
+                    <li class="numberitem">15</li>
+                    <li class="numberitem">2</li>
+                    <li class="numberitem">34</li>
+                    <li class="numberitem">36</li>
+                    <li class="numberitem">29</li>
+                    <li class="numberitem">45</li>
+                    <li class="numberitem">6</li>
+                </ul>
+            </li>
+        </ol>
+        
+<!-- Megamillions History  -->
+        <h2>Mega Millions History</h2>
+        <ol>
+            <li>
+                <h3>Date</h3>
+                <ul class="numberslist">
+                    <li class="numberitem">15</li>
+                    <li class="numberitem">2</li>
+                    <li class="numberitem">34</li>
+                    <li class="numberitem">36</li>
+                    <li class="numberitem">29</li>
+                    <li class="numberitem">45</li>
+                    <li class="numberitem">6</li>
+                </ul>
+            </li>
+        </ol>
+
+    </main>
+
+    <footer></footer>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
