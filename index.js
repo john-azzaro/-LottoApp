@@ -19,7 +19,7 @@ const STORE = {
 
 }
 
-//// API functions //////////
+//// API functions //////////////////////////////////////////////////////////////////////////////////////////////////
 /*
 need to chain one after the other, first has to pass info to the second items
 idea is to edit STORE each time and then after the scond time update the page.
@@ -53,10 +53,6 @@ function getLotteryDataFromApi(powerBallSuccess, megaMillionsSuccess, powerBallE
 
 
 
-
-
-
-
 ////// GENERATE  //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function generateMainPage() {
@@ -70,7 +66,6 @@ function generateNavItem(drawing) {
     </li>
     `
 }
-
 
 function generateNavSection(drawings) {
     //
@@ -119,7 +114,7 @@ function generateNumberSection(drawings) {
 adapter from api to app (so if the api changes, then you just need to change the adapter)  
 called programming to contract - adjusting at the point of the adapter so you dont violate the contract
 
-**i need to write a piece that gets the data form the api and returns the type of object above.  it will ask the adapter for the data and then the adpater will get from the api.
+** need to write a piece that gets the data form the api and returns the type of object above.  it will ask the adapter for the data and then the adpater will get from the api.
 
 */
 
@@ -179,7 +174,7 @@ function generateNewsItem(newsItem) {
     `
 }
 
-///// display ////////////////////////////////////////////////////////////////////////////////////////////////////////
+///// DISPLAY FUNCTIONS /////////////////////////////////////////////////////////////////////////////////////////////
 
 function appendOrReplace(items, container, generator, append = true) {
     const html = generator(items);
