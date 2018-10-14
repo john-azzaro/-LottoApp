@@ -15,8 +15,6 @@ const STORE = {
     },
     ],
     newsItems: [],
-
-
 }
 
 //// API functions //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -24,7 +22,6 @@ const STORE = {
 need to chain one after the other, first has to pass info to the second items
 idea is to edit STORE each time and then after the scond time update the page.
 */
-
 
 function getDataFromApi(url, success, error) {
     const settings = {
@@ -50,8 +47,6 @@ function getLotteryDataFromApi(powerBallSuccess, megaMillionsSuccess, powerBallE
     getPowerballDataFromApi(powerBallSuccess, powerBallError);
     getMegaMillionsDataFromApi(megaMillionsSuccess,megaMillionsError);
 }
-
-
 
 ////// GENERATE  //////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -104,7 +99,6 @@ function generateNumberSection(drawings) {
     </section>
     `
 }
-
 
 // for each drawing in drawings, map it on to generatedrawing items
 /* {name: "Powerball",
@@ -234,8 +228,6 @@ function initalize() {
 
 $(initalize);
 
-
-// make dummy data, call display page
 
 
 
