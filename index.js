@@ -43,7 +43,6 @@ function getMegaMillionsDataFromApi(success, error) {
 }
 
 function getLotteryDataFromApi(powerBallSuccess, megaMillionsSuccess, powerBallError, megaMillionsError) {
-    
     getPowerballDataFromApi(powerBallSuccess, powerBallError);
     getMegaMillionsDataFromApi(megaMillionsSuccess,megaMillionsError);
 }
@@ -179,9 +178,7 @@ function appendOrReplace(items, container, generator, append = true) {
     }
 }
 
-function displayNumberSection(drawings, container, append = true) {
-    appendOrReplace(drawings, container, generateNumberSection, append);
-}
+
 
 function displayMainPage(drawings, newsItems) {
     const main = $('main')
@@ -189,6 +186,10 @@ function displayMainPage(drawings, newsItems) {
     displayNumberSection(drawings, main);
     displayNavSection(drawings, main);
     displayNewsSection(newsItems, main);
+}
+
+function displayNumberSection(drawings, container, append = true) {
+    appendOrReplace(drawings, container, generateNumberSection, append);
 }
 
 function displayNavSection(drawings, container, append = true) {

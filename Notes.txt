@@ -53,6 +53,26 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 1. create files (use Open folder and then create files in that project) and name them index(best practice).
 2. From your wireframe, create the basic structre of all the pages your app will need.
 3. in index.js, create the initial function stubs.
