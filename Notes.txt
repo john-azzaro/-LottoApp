@@ -87,7 +87,32 @@
 
 
 
+function generateNumberSection(drawings) {
+    //
+    return `
+    <section id="numbersection">
+        <ul>
+            ${drawings.map(generateDrawingItem)}
+        </ul>
+    </section>
+    `
+}
 
+// for each drawing in drawings, map it on to generatedrawing items
+/* {name: "Powerball",
+    date: 2/3/2018,
+    numbers: [2,3,4,5,6,18,2],
+}
+adapter from api to app (so if the api changes, then you just need to change the adapter)  
+called programming to contract - adjusting at the point of the adapter so you dont violate the contract
+
+** need to write a piece that gets the data form the api and returns the type of object above.  it will ask the adapter for the data and then the adpater will get from the api.
+
+*/
+
+function generateDrawingItem(drawing) {
+    // 
+    const numberList = genera
 
 
 
