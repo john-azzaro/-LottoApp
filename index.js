@@ -103,6 +103,19 @@ in the second api's callback, we set the STORE's other lottery, then we display 
 
 
 
+
+function handlePowerballHistory() {
+    $('main').on('click', '#goToPowerballHistory', function(event) {
+        displayPowerballHistory();
+    });
+}
+
+function handleMegaMillionsHistory() {
+    $('main').on('click', '#goToMegaMillionsHistory', function(event) {
+        displayMegaMillionsHistory();
+    });
+}
+
 ////// GENERATE  //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function generateMainPage() {
@@ -263,8 +276,11 @@ function displayNewsItem(newsItem) {
 //// EVENT HANDLERS //////////////////////////////////////////////////////////////////////////////////////////
 
 function setUpEventHandlers() {
-
+    handlePowerballHistory();
+    handleMegaMillionsHistory();
 }
+
+///// INITIALIZATION //////////////////////////////////////////////////////////////////////////////////////////
 
 function initalize() {
     setUpEventHandlers();
