@@ -81,6 +81,8 @@ function powerBallAdapter(drawings) {
 
 /////// HISTORY //////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+
 function generateNavItem(drawing) {
     return `
     <li class="navitem">
@@ -100,19 +102,13 @@ function generateNavSection(drawings) {
     `
 }
 
-function generateNumbersList(numbers) {
-    // need to use double quotes.  single quotes dont interpret so it would be a backslash and n, not a new line.
-    const numberList = numbers.map(number => { return `<li class="numberitem">${number}</li>` }).join("\n");
-    return `
-    <ul class="numberslist">
-        ${numberList}
-    </ul>
-    `
-}
-
 function displayNavSection(drawings, container, append = true) {
     appendOrReplace(drawings, container, generateNavSection, append);
 }
+
+
+
+
 
 ////// GENERATE  //////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -158,6 +154,17 @@ function generateDrawingItem(drawing) {
             ${countDown}
         <a class="neareststore" data-drawing="${drawing.name.toLowerCase()}">Find Nearest Store</a>
     </li>
+    `
+}
+
+
+function generateNumbersList(numbers) {
+    // need to use double quotes.  single quotes dont interpret so it would be a backslash and n, not a new line.
+    const numberList = numbers.map(number => { return `<li class="numberitem">${number}</li>` }).join("\n");
+    return `
+    <ul class="numberslist">
+        ${numberList}
+    </ul>
     `
 }
 
@@ -218,9 +225,11 @@ function displayNumberSection(drawings, container, append = true) {
     appendOrReplace(drawings, container, generateNumberSection, append);
 }
 
+
 function displayNewsSection(newsItems, container, append = true) {
     appendOrReplace(newsItems, container, generateNewsSection, append);
 }
+
 
 function displayNumbersList(numbers, container) {
     container.html(generateNumbersList(numbers));
