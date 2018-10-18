@@ -50,6 +50,19 @@
 
 
 
+/*
+function getLotteryDataFromApi(powerBallSuccess, megaMillionsSuccess, powerBallError, megaMillionsError) {
+    getPowerballDataFromApi(powerBallSuccess, powerBallError);
+    getMegaMillionsDataFromApi(megaMillionsSuccess,megaMillionsError);
+}
+*/
+
+/* call the first lottery (first api)
+then we need to set the STORE's to what the api is (powerball, megamillions) this is in the callback.
+then in the callback, we need to call the second api.
+in the second api's callback, we set the STORE's other lottery, then we display on the screen
+
+*/
 
 
 
@@ -60,8 +73,17 @@
 
 
 
+function handlePowerballHistory() {
+    $('main').on('click', '#goToPowerballHistory', function(event) {
+        displayPowerballHistory();
+    });
+}
 
-
+function handleMegaMillionsHistory() {
+    $('main').on('click', '#goToMegaMillionsHistory', function(event) {
+        displayMegaMillionsHistory();
+    });
+}
 
 
 

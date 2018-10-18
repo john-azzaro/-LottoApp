@@ -11,10 +11,19 @@ const STORE = {
 }
 
 //// API functions //////////////////////////////////////////////////////////////////////////////////////////////////
-/*
-need to chain one after the other, first has to pass info to the second items
-idea is to edit STORE each time and then after the scond time update the page.
-*/
+
+
+function getLotteryDataFromApi() {
+    getPowerballDataFromApi(function(response) {
+        const powerBallDrawings = powerBallAdapter(response.data);
+        STORE.drawings.push(powerBallDrawings[powerBallDrawings.length - 1]);
+        getMegaMillionsDataFromApi(function(response) {
+        const megaMillionsDrawings = megaMillionsAdapter(response.data)
+        STORE.drawings.push(megaMillionsDrawings[megaMillionsDrawings.length - 1]);
+        displayMainPage(STORE.drawings, STORE.newsItems);
+        });
+    });
+}
 
 function getDataFromApi(url, success, error) {
     const settings = {
@@ -35,20 +44,6 @@ function getMegaMillionsDataFromApi(success, error) {
     getDataFromApi(MEGAMILLIONS_URL, success, error);
 }
 
-function getLotteryDataFromApi() {
-    getPowerballDataFromApi(function(response) {
-        const powerBallDrawings = powerBallAdapter(response.data);
-                // Array spread operator - instead of pushing the whole array inside, it pushes all the array items in at once
-        STORE.drawings.push(powerBallDrawings[powerBallDrawings.length - 1]);
-        getMegaMillionsDataFromApi(function(response) {
-        const megaMillionsDrawings = megaMillionsAdapter(response.data)
-        STORE.drawings.push(megaMillionsDrawings[megaMillionsDrawings.length - 1]);
-        displayMainPage(STORE.drawings, STORE.newsItems);
-        });
-    });
-}
-
-
 function megaMillionsAdapter(drawings) {
     console.log("running megamilions adapter")
     const dateIndex = 8;
@@ -58,6 +53,7 @@ function megaMillionsAdapter(drawings) {
     return drawings.map((drawing) => {
         const megaBallMultiplier = [drawing[megaBallIndex], drawing[multiplierIndex]];
         const numbers = drawing[numbersIndex].split(" ")
+        // Array spread operator - instead of pushing the whole array inside, it pushes all the array items in at once
         numbers.push(...megaBallMultiplier)
             return {
             name: MEGAMILLIONS,
@@ -83,44 +79,7 @@ function powerBallAdapter(drawings) {
 }
 
 
-/*
-function getLotteryDataFromApi(powerBallSuccess, megaMillionsSuccess, powerBallError, megaMillionsError) {
-    getPowerballDataFromApi(powerBallSuccess, powerBallError);
-    getMegaMillionsDataFromApi(megaMillionsSuccess,megaMillionsError);
-}
-*/
-
-/* call the first lottery (first api)
-then we need to set the STORE's to what the api is (powerball, megamillions) this is in the callback.
-then in the callback, we need to call the second api.
-in the second api's callback, we set the STORE's other lottery, then we display on the screen
-
-*/
-
 /////// HISTORY //////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-function handlePowerballHistory() {
-    $('main').on('click', '#goToPowerballHistory', function(event) {
-        displayPowerballHistory();
-    });
-}
-
-function handleMegaMillionsHistory() {
-    $('main').on('click', '#goToMegaMillionsHistory', function(event) {
-        displayMegaMillionsHistory();
-    });
-}
-
-////// GENERATE  //////////////////////////////////////////////////////////////////////////////////////////////////////
-
-function generateMainPage() {
-   // might not need this
-}
 
 function generateNavItem(drawing) {
     return `
@@ -139,6 +98,26 @@ function generateNavSection(drawings) {
         </ul>
     </section>
     `
+}
+
+function generateNumbersList(numbers) {
+    // need to use double quotes.  single quotes dont interpret so it would be a backslash and n, not a new line.
+    const numberList = numbers.map(number => { return `<li class="numberitem">${number}</li>` }).join("\n");
+    return `
+    <ul class="numberslist">
+        ${numberList}
+    </ul>
+    `
+}
+
+function displayNavSection(drawings, container, append = true) {
+    appendOrReplace(drawings, container, generateNavSection, append);
+}
+
+////// GENERATE  //////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function generateMainPage() {
+   // might not need this
 }
 
 function generateNewsSection(newsItems) {
@@ -179,16 +158,6 @@ function generateDrawingItem(drawing) {
             ${countDown}
         <a class="neareststore" data-drawing="${drawing.name.toLowerCase()}">Find Nearest Store</a>
     </li>
-    `
-}
-
-function generateNumbersList(numbers) {
-    // need to use double quotes.  single quotes dont interpret so it would be a backslash and n, not a new line.
-    const numberList = numbers.map(number => { return `<li class="numberitem">${number}</li>` }).join("\n");
-    return `
-    <ul class="numberslist">
-        ${numberList}
-    </ul>
     `
 }
 
@@ -249,10 +218,6 @@ function displayNumberSection(drawings, container, append = true) {
     appendOrReplace(drawings, container, generateNumberSection, append);
 }
 
-function displayNavSection(drawings, container, append = true) {
-    appendOrReplace(drawings, container, generateNavSection, append);
-}
-
 function displayNewsSection(newsItems, container, append = true) {
     appendOrReplace(newsItems, container, generateNewsSection, append);
 }
@@ -272,18 +237,9 @@ function displayNewsItem(newsItem) {
     //
 }
 
-
-//// EVENT HANDLERS //////////////////////////////////////////////////////////////////////////////////////////
-
-function setUpEventHandlers() {
-    handlePowerballHistory();
-    handleMegaMillionsHistory();
-}
-
 ///// INITIALIZATION //////////////////////////////////////////////////////////////////////////////////////////
 
 function initalize() {
-    setUpEventHandlers();
     getLotteryDataFromApi();
 }
 
