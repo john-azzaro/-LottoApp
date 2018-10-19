@@ -12,15 +12,16 @@ const STORE = {
 
 //// API functions //////////////////////////////////////////////////////////////////////////////////////////////////
 
+// we add the ... put the contents of one array into another array (instead of putting the array itself in the other array)
 
 function getLotteryDataFromApi() {
     getPowerballDataFromApi(function(response) {
         const powerBallDrawings = powerBallAdapter(response.data);
-        STORE.drawings.push(powerBallDrawings[powerBallDrawings.length - 1]);
+        STORE.drawings.push(...powerBallDrawings.slice(powerBallDrawings.length - 25));                      
         
         getMegaMillionsDataFromApi(function(response) {
         const megaMillionsDrawings = megaMillionsAdapter(response.data)
-        STORE.drawings.push(megaMillionsDrawings[megaMillionsDrawings.length - 1]);
+        STORE.drawings.push(...megaMillionsDrawings.slice(megaMillionsDrawings.length - 25));    
         
         displayMainPage(STORE.drawings, STORE.newsItems);
         });
@@ -65,6 +66,22 @@ function megaMillionsAdapter(drawings) {
     });
 }
 
+
+function splitDrawingsByName(drawings) {
+    let splitDrawings = {};
+    for (let i = 0; i < drawings.length; i++) {
+      if (drawings[i].name in splitDrawings) {
+        splitDrawings[drawings[i].name].push(drawings[i]);
+      } else {
+        splitDrawings[drawings[i].name] = [drawings[i]];
+      }
+    }
+    return splitDrawings;
+}
+
+
+
+
 function powerBallAdapter(drawings) {
     const dateIndex = 8;
     const numbersIndex = 9;
@@ -81,10 +98,74 @@ function powerBallAdapter(drawings) {
 }
 
 
+/////// HISTORY //////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// from generateDrawingItem
+// 1. listen for user click on history link
+// 2. generate history section - drawing name title, need list item for each past drawing with date and numbers
+// 3. generate history item - date and numbers
+
+// use drawing adapter
+function generateHistorySection(drawingName, drawings) {
+    return `
+        <section id="historysection">    
+          <h3>${drawingName} History</h3>
+            <ul>
+                ${drawings.map(generateHistoryItem).join("\n")}
+            </ul>
+         <section>
+    `
+}
+
+
+function generateHistoryItem(drawing) {
+return `
+    <li>
+        <h3>${drawing.date}</h3>
+             ${generateNumbersList(drawing.numbers)}
+    </li>
+    `
+}
+
+
+
 ////// GENERATE  //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function generateMainPage() {
-   // might not need this
+
+function generateNumbersList(numbers) {
+    // need to use double quotes.  single quotes dont interpret so it would be a backslash and n, not a new line.
+    const numberList = numbers.map(number => { return `<li class="numberitem">${number}</li>` }).join("\n");
+    return `
+    <ul class="numberslist">
+        ${numberList}
+    </ul>
+    `
+}
+
+function generateDrawingItem(drawing) {
+    // 
+    const numberList = generateNumbersList(drawing.numbers);
+    const countDown = generateCountDown(drawing.name, drawing.date);
+    return `
+    <li id="${drawing.name.toLowerCase()}listitem">
+        <h2>${drawing.name}</h2>
+            ${numberList}
+            ${countDown}
+        <a class="neareststore" data-drawing="${drawing.name.toLowerCase()}">Find Nearest Store</a>
+    </li>
+    `
+}
+
+function generateNumberSection(drawings) {
+    console.log(drawings);
+    return `
+    <section id="numbersection">     
+        <ul>
+            ${generateDrawingItem(drawings.pop())}
+            ${generateHistorySection(drawings[0].name, drawings)}
+        </ul>
+    </section>
+    `
 }
 
 function generateNewsSection(newsItems) {
@@ -100,61 +181,6 @@ function generateNewsSection(newsItems) {
             </li>
         </ul>
     </section>
-    `
-}
-
-function generateNavSection(drawings) {
-    //
-    return `
-    <section id="navsection">
-        <ul id="navlist">
-            ${drawings.map(generateNavItem).join("\n")}
-        </ul>
-    </section>
-    `
-}
-
-function generateNumberSection(drawings) {
-    //
-    return `
-    <section id="numbersection">
-        <ul>
-            ${drawings.map(generateDrawingItem)}
-        </ul>
-    </section>
-    `
-}
-
-function generateNavItem(drawing) {
-    return `
-    <li class="navitem">
-        <a class="navlink" data-drawing="${drawing.name.toLowerCase()}">${drawing.name} History</a>
-    </li>
-    `
-}
-
-function generateDrawingItem(drawing) {
-    // 
-    const numberList = generateNumbersList(drawing.numbers);
-    const countDown = generateCountDown(drawing.name, drawing.date) ;
-    return `
-    <li id="${drawing.name.toLowerCase()}listitem">
-        <h2>${drawing.name}</h2>
-            ${numberList}
-            ${countDown}
-        <a class="neareststore" data-drawing="${drawing.name.toLowerCase()}">Find Nearest Store</a>
-    </li>
-    `
-}
-
-
-function generateNumbersList(numbers) {
-    // need to use double quotes.  single quotes dont interpret so it would be a backslash and n, not a new line.
-    const numberList = numbers.map(number => { return `<li class="numberitem">${number}</li>` }).join("\n");
-    return `
-    <ul class="numberslist">
-        ${numberList}
-    </ul>
     `
 }
 
@@ -191,7 +217,7 @@ function generateNewsItem(newsItem) {
 
 ///// DISPLAY FUNCTIONS /////////////////////////////////////////////////////////////////////////////////////////////
 
-// reuseable - takes a buch of items, runs the generator on the item, and if true adds tot he container, if false replaces the contents of container.
+// reuseable - takes a buch of items, runs the generator on the item, and if true adds to the container, if false replaces the contents of container.
 function appendOrReplace(items, container, generator, append = true) {
     const html = generator(items);
     if (append) {
@@ -206,25 +232,24 @@ function displayMainPage(drawings, newsItems) {
     const main = $('main')
     main.empty();  // this empties it out so that we can do a bunch of appends
     displayNumberSection(drawings, main);   // so the "main" slot is basically to display the information
-    displayNavSection(drawings, main);
+    // displayNavSection(drawings, main);
     displayNewsSection(newsItems, main);
-}
-
-// from displaymainpage, main (becomes conatiner because we might want to put it somewhere other than main).  if append is left off, its undefined, but default is true.
-function displayNumberSection(drawings, container, append = true) {
-    appendOrReplace(drawings, container, generateNumberSection, append);
-}
-
-function displayNavSection(drawings, container, append = true) {
-    appendOrReplace(drawings, container, generateNavSection, append);
-}
-
-function displayNewsSection(newsItems, container, append = true) {
-    appendOrReplace(newsItems, container, generateNewsSection, append);
 }
 
 function displayNumbersList(numbers, container) {
     container.html(generateNumbersList(numbers));
+}
+
+function displayNumberSection(drawings, container, append = true) {
+    const splitDrawings = splitDrawingsByName(drawings);
+    Object.keys(splitDrawings).forEach(splitDrawing => {
+        appendOrReplace(splitDrawings[splitDrawing], container, generateNumberSection, append);
+    });
+}
+
+// from displaymainpage, main (becomes conatiner because we might want to put it somewhere other than main).  if append is left off, its undefined, but default is true.
+function displayNewsSection(newsItems, container, append = true) {
+    appendOrReplace(newsItems, container, generateNewsSection, append);
 }
 
 function displayDrawingItem(drawing, container) {
@@ -236,16 +261,12 @@ function displayCountDown(drawing, container) {
 function displayNewsItem(newsItem) {
 }
 
+
 ///// INITIALIZATION //////////////////////////////////////////////////////////////////////////////////////////
+
 
 function initalize() {
     getLotteryDataFromApi();
 }
 
 $(initalize);
-
-
-
-
-
-

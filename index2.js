@@ -17,11 +17,11 @@ function getLotteryDataFromApi() {
     getPowerballDataFromApi(function(response) {
         const powerBallDrawings = powerBallAdapter(response.data);
         STORE.drawings.push(powerBallDrawings[powerBallDrawings.length - 1]);
-        
+
         getMegaMillionsDataFromApi(function(response) {
         const megaMillionsDrawings = megaMillionsAdapter(response.data)
         STORE.drawings.push(megaMillionsDrawings[megaMillionsDrawings.length - 1]);
-        
+
         displayMainPage(STORE.drawings, STORE.newsItems);
         });
     });
@@ -81,6 +81,74 @@ function powerBallAdapter(drawings) {
 }
 
 
+/////// HISTORY //////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/*
+
+function generateHistoryItem(drawing) {
+    return `
+    <li class="historyitem">
+        <a class="historylink" data-drawing="${drawing.name.toLowerCase()}">${drawing.name} History</a>
+    </li>
+    `
+}
+
+function generateHistorySection(drawings) {
+    //
+    return `
+    <section id="historysection">
+        <ul id="historylist">
+            ${drawings.map(generateHistoryItem).join("\n")}
+        </ul>
+    </section>
+    `
+}
+
+function displayHistorySection(drawings, container, append = true) {
+    appendOrReplace(drawings, container, generateHistorySection, append);
+}
+*/
+
+
+//////// HISTORY v2 /////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+function displayPowerballHistory() {
+
+}
+
+function displayMegaMillionsHistory() {
+
+}
+
+
+function handlePowerballHistory() {
+    $('main').on('click', '#goToPowerballHistory', function(event) {
+        displayPowerballHistory();
+    });
+}
+
+function handleMegaMillionsHistory() {
+    $('main').on('click', '#goToMegaMillionsHistory', function(event) {
+        displayMegaMillionsHistory();
+    });
+}
+
+function generateHistorySection() {
+    return `
+        <button id="goToPowerballHistory">Powerball History<button>
+        <button id="goToMegaMillionsHistory">MegaMillions History<button>
+    `
+}
+
+function displayHistorySection(drawings) {
+    $('container').append(generateHistorySection(drawings));
+}
+
+
+
 ////// GENERATE  //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function generateMainPage() {
@@ -103,33 +171,14 @@ function generateNewsSection(newsItems) {
     `
 }
 
-function generateNavSection(drawings) {
-    //
-    return `
-    <section id="navsection">
-        <ul id="navlist">
-            ${drawings.map(generateNavItem).join("\n")}
-        </ul>
-    </section>
-    `
-}
-
 function generateNumberSection(drawings) {
     //
     return `
     <section id="numbersection">
         <ul>
-            ${drawings.map(generateDrawingItem)}
+            ${drawings.map(generateDrawingItem)} 
         </ul>
     </section>
-    `
-}
-
-function generateNavItem(drawing) {
-    return `
-    <li class="navitem">
-        <a class="navlink" data-drawing="${drawing.name.toLowerCase()}">${drawing.name} History</a>
-    </li>
     `
 }
 
@@ -206,7 +255,7 @@ function displayMainPage(drawings, newsItems) {
     const main = $('main')
     main.empty();  // this empties it out so that we can do a bunch of appends
     displayNumberSection(drawings, main);   // so the "main" slot is basically to display the information
-    displayNavSection(drawings, main);
+    displayHistorySection(drawings, main);
     displayNewsSection(newsItems, main);
 }
 
@@ -215,13 +264,11 @@ function displayNumberSection(drawings, container, append = true) {
     appendOrReplace(drawings, container, generateNumberSection, append);
 }
 
-function displayNavSection(drawings, container, append = true) {
-    appendOrReplace(drawings, container, generateNavSection, append);
-}
 
 function displayNewsSection(newsItems, container, append = true) {
     appendOrReplace(newsItems, container, generateNewsSection, append);
 }
+
 
 function displayNumbersList(numbers, container) {
     container.html(generateNumbersList(numbers));
@@ -238,14 +285,14 @@ function displayNewsItem(newsItem) {
 
 ///// INITIALIZATION //////////////////////////////////////////////////////////////////////////////////////////
 
+function setUpEventHandlers() {
+    handleMegaMillionsHistory();
+    handlePowerballHistory();
+}
+
 function initalize() {
+    setUpEventHandlers();
     getLotteryDataFromApi();
 }
 
 $(initalize);
-
-
-
-
-
-

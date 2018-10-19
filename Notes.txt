@@ -1,3 +1,97 @@
+/*
+function generatePowerballHistory() {
+//
+}
+
+function generateMegaMillionsHistory() {
+//
+}
+
+function displayPowerballHistory() {
+//
+}
+
+function displayMegaMillionsHistory() {
+//
+}
+
+
+
+// #3: generate each nav item (i.e. Powerball History and MegaMillions history)...
+function generateNavItem(drawing) {
+    return `
+    <li>
+    <button><data-drawing="${drawing.name.toLowerCase()}">${drawing.name} History</button>
+    </li>
+    `
+}
+
+// #2: generate nav section with nav items (i.e. the names of the lotteries, Powerball and MegaMillions). 
+// drawings are passed in from displayNacSection...
+function generateNavSection(drawings) {
+    //
+    return `
+    <section id="navsection">
+        <ul id="navlist">
+            ${drawings.map(generateNavItem).join("\n")}
+        </ul>
+    </section>
+    `
+}
+
+// #1: append the nav section...
+// drawings carry over, main becomes container (in case we want to put this somewhere else other than main), generate the nav section, and append
+function displayNavSection(drawings, container, append = true) {
+    appendOrReplace(drawings, container, generateNavSection, append);
+}
+*/
+
+
+
+/*
+
+function generateHistoryLink(drawingName, drawingDate, drawingNumbers) {
+    return `
+    <a class="historyLink"><h3>${drawingName} History</h3></a>
+     `
+}
+*/
+
+
+
+
+
+
+
+
+
+
+// #3: generate each nav item (i.e. Powerball History and MegaMillions history)...
+function generateNavItem(drawing) {
+    return `
+    <li>
+    <button><h4 data-drawing="${drawing.name.toLowerCase()}">${drawing.name} History</h4></button>
+    </li>
+    `
+}
+// #2: generate nav section with nav items (i.e. the names of the lotteries, Powerball and MegaMillions). 
+// drawings are passed in from displayNacSection...
+function generateNavSection(drawings) {
+    //
+    return `
+    <section id="navsection">
+        <ul id="navlist">
+            ${drawings.map(generateNavItem).join("\n")}
+        </ul>
+    </section>
+    `
+}
+
+
+
+
+
+        <button id="navlink" data-drawing="${drawing.name.toLowerCase()}>${drawing.name} History</button>
 
 
 
@@ -12,23 +106,53 @@
 
 
 
+/*
+function generatePowerballHistory() {
+//
+}
+
+function generateMegaMillionsHistory() {
+//
+}
+
+function displayPowerballHistory() {
+//
+}
+
+function displayMegaMillionsHistory() {
+//
+}
 
 
 
+// #3: generate each nav item (i.e. Powerball History and MegaMillions history)...
+function generateNavItem(drawing) {
+    return `
+    <li>
+    <button><data-drawing="${drawing.name.toLowerCase()}">${drawing.name} History</button>
+    </li>
+    `
+}
 
+// #2: generate nav section with nav items (i.e. the names of the lotteries, Powerball and MegaMillions). 
+// drawings are passed in from displayNacSection...
+function generateNavSection(drawings) {
+    //
+    return `
+    <section id="navsection">
+        <ul id="navlist">
+            ${drawings.map(generateNavItem).join("\n")}
+        </ul>
+    </section>
+    `
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
+// #1: append the nav section...
+// drawings carry over, main becomes container (in case we want to put this somewhere else other than main), generate the nav section, and append
+function displayNavSection(drawings, container, append = true) {
+    appendOrReplace(drawings, container, generateNavSection, append);
+}
+*/
 
 
 
