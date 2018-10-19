@@ -108,8 +108,6 @@ function displayNavSection(drawings, container, append = true) {
 
 
 
-
-
 ////// GENERATE  //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function generateMainPage() {
@@ -236,14 +234,12 @@ function displayNumbersList(numbers, container) {
 }
 
 function displayDrawingItem(drawing, container) {
-    // 
 }
 
 function displayCountDown(drawing, container) {
-    //
 }
+
 function displayNewsItem(newsItem) {
-    //
 }
 
 ///// INITIALIZATION //////////////////////////////////////////////////////////////////////////////////////////
