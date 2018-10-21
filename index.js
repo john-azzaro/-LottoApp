@@ -2,30 +2,26 @@
 
 const POWERBALL_URL = 'https://data.ny.gov/api/views/d6yy-54nr/rows.json';
 const MEGAMILLIONS_URL = 'https://data.ny.gov/api/views/5xaw-6ayf/rows.json';
-const POWERBALL = "Powerball";
-const MEGAMILLIONS = "Megamillions";
 
 const STORE = {
-    drawings: [],
+    drawings: [
+        {name: "Powerball",
+        date: new Date(),   // new is an object constructor 
+        numbers: [2,3,4,5,6,18,2],
+    },
+    {name: "MegaMillions",
+    date: new Date(),
+    numbers: [2,3,4,5,6,18,2],
+    },
+    ],
     newsItems: [],
 }
 
 //// API functions //////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-function getLotteryDataFromApi() {
-    getPowerballDataFromApi(function(response) {
-        const powerBallDrawings = powerBallAdapter(response.data);
-        STORE.drawings.push(powerBallDrawings[powerBallDrawings.length - 1]);
-        
-        getMegaMillionsDataFromApi(function(response) {
-        const megaMillionsDrawings = megaMillionsAdapter(response.data)
-        STORE.drawings.push(megaMillionsDrawings[megaMillionsDrawings.length - 1]);
-        
-        displayMainPage(STORE.drawings, STORE.newsItems);
-        });
-    });
-}
+/*
+need to chain one after the other, first has to pass info to the second items
+idea is to edit STORE each time and then after the scond time update the page.
+*/
 
 function getDataFromApi(url, success, error) {
     const settings = {
@@ -46,45 +42,35 @@ function getMegaMillionsDataFromApi(success, error) {
     getDataFromApi(MEGAMILLIONS_URL, success, error);
 }
 
-function megaMillionsAdapter(drawings) {
-    console.log("running megamilions adapter")
-    const dateIndex = 8;
-    const numbersIndex = 9;
-    const megaBallIndex = 10;
-    const multiplierIndex = 11;
-    return drawings.map((drawing) => {
-        const megaBallMultiplier = [drawing[megaBallIndex], drawing[multiplierIndex]];
-        const numbers = drawing[numbersIndex].split(" ")
-        // Array spread operator - instead of pushing the whole array inside, it pushes all the array items in at once
-        numbers.push(...megaBallMultiplier)
-            return {
-            name: MEGAMILLIONS,
-            date: new Date(drawing[dateIndex]),
-            numbers
-        }
-    });
+function getLotteryDataFromApi(powerBallSuccess, megaMillionsSuccess, powerBallError, megaMillionsError) {
+    
+    getPowerballDataFromApi(powerBallSuccess, powerBallError);
+    getMegaMillionsDataFromApi(megaMillionsSuccess,megaMillionsError);
 }
-
-function powerBallAdapter(drawings) {
-    const dateIndex = 8;
-    const numbersIndex = 9;
-    const multiplierIndex = 10;
-    return drawings.map((drawing) => {
-        const numbers = drawing[numbersIndex].split(" ")
-        numbers.push(drawing[multiplierIndex])
-        return {
-                name: POWERBALL,
-                date: new Date(drawing[dateIndex]),   // makes a new date out of the date string format
-                numbers
-        }
-    });
-}
-
 
 ////// GENERATE  //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function generateMainPage() {
    // might not need this
+}
+
+function generateNavItem(drawing) {
+    return `
+    <li class="navitem">
+        <a class="navlink" data-drawing="${drawing.name.toLowerCase()}">${drawing.name} History</a>
+    </li>
+    `
+}
+
+function generateNavSection(drawings) {
+    //
+    return `
+    <section id="navsection">
+        <ul id="navlist">
+            ${drawings.map(generateNavItem).join("\n")}
+        </ul>
+    </section>
+    `
 }
 
 function generateNewsSection(newsItems) {
@@ -103,17 +89,6 @@ function generateNewsSection(newsItems) {
     `
 }
 
-function generateNavSection(drawings) {
-    //
-    return `
-    <section id="navsection">
-        <ul id="navlist">
-            ${drawings.map(generateNavItem).join("\n")}
-        </ul>
-    </section>
-    `
-}
-
 function generateNumberSection(drawings) {
     //
     return `
@@ -125,13 +100,18 @@ function generateNumberSection(drawings) {
     `
 }
 
-function generateNavItem(drawing) {
-    return `
-    <li class="navitem">
-        <a class="navlink" data-drawing="${drawing.name.toLowerCase()}">${drawing.name} History</a>
-    </li>
-    `
+// for each drawing in drawings, map it on to generatedrawing items
+/* {name: "Powerball",
+    date: 2/3/2018,
+    numbers: [2,3,4,5,6,18,2],
 }
+adapter from api to app (so if the api changes, then you just need to change the adapter)  
+called programming to contract - adjusting at the point of the adapter so you dont violate the contract
+
+** need to write a piece that gets the data form the api and returns the type of object above.  it will ask the adapter for the data and then the adpater will get from the api.
+
+*/
+
 
 function generateDrawingItem(drawing) {
     // 
@@ -146,7 +126,6 @@ function generateDrawingItem(drawing) {
     </li>
     `
 }
-
 
 function generateNumbersList(numbers) {
     // need to use double quotes.  single quotes dont interpret so it would be a backslash and n, not a new line.
@@ -191,7 +170,6 @@ function generateNewsItem(newsItem) {
 
 ///// DISPLAY FUNCTIONS /////////////////////////////////////////////////////////////////////////////////////////////
 
-// reuseable - takes a buch of items, runs the generator on the item, and if true adds tot he container, if false replaces the contents of container.
 function appendOrReplace(items, container, generator, append = true) {
     const html = generator(items);
     if (append) {
@@ -201,18 +179,16 @@ function appendOrReplace(items, container, generator, append = true) {
     }
 }
 
-// takes the data and displays on page
+function displayNumberSection(drawings, container, append = true) {
+    appendOrReplace(drawings, container, generateNumberSection, append);
+}
+
 function displayMainPage(drawings, newsItems) {
     const main = $('main')
     main.empty();  // this empties it out so that we can do a bunch of appends
-    displayNumberSection(drawings, main);   // so the "main" slot is basically to display the information
+    displayNumberSection(drawings, main);
     displayNavSection(drawings, main);
     displayNewsSection(newsItems, main);
-}
-
-// from displaymainpage, main (becomes conatiner because we might want to put it somewhere other than main).  if append is left off, its undefined, but default is true.
-function displayNumberSection(drawings, container, append = true) {
-    appendOrReplace(drawings, container, generateNumberSection, append);
 }
 
 function displayNavSection(drawings, container, append = true) {
@@ -223,23 +199,31 @@ function displayNewsSection(newsItems, container, append = true) {
     appendOrReplace(newsItems, container, generateNewsSection, append);
 }
 
+function displayDrawingItem(drawing, container) {
+    // 
+}
+
 function displayNumbersList(numbers, container) {
     container.html(generateNumbersList(numbers));
 }
-
-function displayDrawingItem(drawing, container) {
-}
-
 function displayCountDown(drawing, container) {
+    //
 }
-
 function displayNewsItem(newsItem) {
+    //
 }
 
-///// INITIALIZATION //////////////////////////////////////////////////////////////////////////////////////////
+
+//// EVENT HANDLERS //////////////////////////////////////////////////////////////////////////////////////////
+
+function setUpEventHandlers() {
+
+}
 
 function initalize() {
-    getLotteryDataFromApi();
+    setUpEventHandlers();
+    displayMainPage(STORE.drawings, STORE.newsItems);
+
 }
 
 $(initalize);
