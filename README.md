@@ -1,4 +1,5 @@
 # LottoApp
-Lotto Application
+
+## Lotto Application
 
 Initial build of Lottery application.
