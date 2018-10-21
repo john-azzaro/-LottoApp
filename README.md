@@ -1,7 +1,7 @@
 # LottoApp
 
 ## What is LottoApp?
-The Lotto App is an initial build of a special lottery application that provdies the user with up-to-date information on two popular national lotteries; the Powerball and Megamillions.  
+The Lotto App is an initial build of a special lottery application that providess the user with up-to-date information on two popular national lotteries; the Powerball and Megamillions.  
 
 ## What does LottoApp feature?
 As of the current build, LottoApp features:
