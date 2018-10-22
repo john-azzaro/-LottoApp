@@ -10,3 +10,8 @@ As of the current build, LottoApp features:
 * MegaMillions history (25)
 * Powerball history (25)
 
+To be added
+* Next Draw Countdown
+* Strategy Section
+* Locations
+
