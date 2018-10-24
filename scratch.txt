@@ -1,0 +1,110 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h3>Next ${drawingName} Drawing</h3>
+    <div class="countdown">
+        <span class="days">${daysLeft}</span>
+        <span class="hours">${hoursLeft}</span>
+        <span class="minutes">${minutesLeft}</span>
+    </div>
+
+    <section id="newssection">
+        <h2>Lotto in the News</h2>
+        <ul id="newslist">
+            <li class="newsarticle">
+                <img class="newsimage">
+                <h3>Headline</h3>
+                <a class="readmorelink">Read More</a>
+            </li>
+        </ul>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <header></header>
+
+    <main>
+
+<!-- Main Page  -->
+<!-- Find Out More -->
+<!-- FAQ  -->
+<!-- Contact -->
+<!-- Statistics feature box  -->
+
+<!--  -->
+
+
+
+
+<!-- Powerball History  -->
+        <h2>Powerball History</h2>
+        <ol>
+            <li>
+                <h3>Date</h3>
+                <ul class="numberslist">
+                    <li class="numberitem">15</li>
+                    <li class="numberitem">2</li>
+                    <li class="numberitem">34</li>
+                    <li class="numberitem">36</li>
+                    <li class="numberitem">29</li>
+                    <li class="numberitem">45</li>
+                    <li class="numberitem">6</li>
+                </ul>
+            </li>
+        </ol>
+        
+<!-- Megamillions History  -->
+        <h2>Mega Millions History</h2>
+        <ol>
+            <li>
+                <h3>Date</h3>
+                <ul class="numberslist">
+                    <li class="numberitem">15</li>
+                    <li class="numberitem">2</li>
+                    <li class="numberitem">34</li>
+                    <li class="numberitem">36</li>
+                    <li class="numberitem">29</li>
+                    <li class="numberitem">45</li>
+                    <li class="numberitem">6</li>
+                </ul>
+            </li>
+        </ol>
+
+    </main>
+
+    <footer></footer>

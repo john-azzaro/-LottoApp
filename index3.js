@@ -143,7 +143,7 @@ function generateNumbersList(numbers) {
 }
 
 function generateDrawingItem(drawing) {
-    // 
+    // removed this because it will be in its own section <a class="neareststore" data-drawing="${drawing.name.toLowerCase()}">Find Nearest Store</a>
     const numberList = generateNumbersList(drawing.numbers);
     const countDown = generateCountDown(drawing.name, drawing.date);
     return `
@@ -151,7 +151,6 @@ function generateDrawingItem(drawing) {
         <h2>${drawing.name}</h2>
             ${numberList}
             ${countDown}
-        <a class="neareststore" data-drawing="${drawing.name.toLowerCase()}">Find Nearest Store</a>
     </li>
     `
 }
