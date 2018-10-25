@@ -191,7 +191,6 @@ function displayMainPage(drawings, newsItems) {
     const main = $('main')
     main.empty();                                         // this empties it out so that we can do a bunch of appends
     displayNumberSection(drawings, main);                 // so the "main" slot is basically to display the information
-    displayNewsSection(newsItems, main);
 }
 
 function displayNumbersList(numbers, container) {

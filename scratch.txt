@@ -61,6 +61,16 @@
 
 //// FROM REMOVED NEWS SECTION ////////////////////////////////////////////
 
+// takes the data and displays on page
+function displayMainPage(drawings, newsItems) {
+    const main = $('main')
+    main.empty();                                         // this empties it out so that we can do a bunch of appends
+    displayNumberSection(drawings, main);                 // so the "main" slot is basically to display the information
+    displayNewsSection(newsItems, main);
+}
+
+
+
 // from displaymainpage, main (becomes conatiner because we might want to put it somewhere other than main).  if append is left off, its undefined, but default is true.
 
 function displayNewsSection(newsItems, container, append = true) {
