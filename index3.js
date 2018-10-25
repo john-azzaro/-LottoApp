@@ -146,14 +146,18 @@ function generateDrawingItem(drawing) {
 }
 
 function generateNumberSection(drawings) {
+    //  
     console.log(drawings);
     return `
-    <section id="numbersection">     
+    <div class="${drawings[0].name}container">
+    <section class="numbersection">     
         <ul>
             ${generateDrawingItem(drawings.pop())}
-            ${generateHistorySection(drawings[0].name, drawings)}
         </ul>
     </section>
+    
+    ${generateHistorySection(drawings[0].name, drawings)}
+    </div>
     `
 }
 

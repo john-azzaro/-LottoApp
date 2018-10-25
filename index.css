@@ -1,10 +1,16 @@
 * {
     box-sizing: border-box;
+    margin: 0;  /* Reset rule - sets all elements to x... helpful for making consistent designs*/
+    padding: 0;  /* Reset rule*/
     background-color: rgb(245, 245, 245);
-    margin: 0;  
-    padding: 0;  
     font-family: 'Roboto', sans-serif;
     list-style-type: none;
+}
+
+
+
+.hidden {
+    display: none;
 }
 
 /* Mobile default */
@@ -12,14 +18,15 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-template-areas: 
-    "logomodule"
-    "powerballmodule"
-    "megaballmodule"
-    "mapmodule"
+    "logocontainer"
+    "powerballcontainer"
+    "megaballcontainer"
+    "mapcontainer"
     ;
 }
 
-.logomodule {
+
+.logocontainer {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-areas: 
@@ -27,6 +34,7 @@
     ;    
     padding-bottom: 20px;   
     background-color: rgb(245, 245, 245);
+    list-style-type: none;
 }
         .logo {
             grid-area: logo;           
@@ -37,7 +45,8 @@
             background-image: url(http://i67.tinypic.com/kos3p.png)
         }
 
-.powerballmodule {
+
+.powerballcontainer {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-areas: 
@@ -100,7 +109,8 @@
             font-size: 14px; 
         }
 
-.megamillionsmodule {
+
+.megamillionscontainer {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-areas: 
@@ -164,7 +174,7 @@
             font-size: 14px; 
         }
 
-.mapmodule {
+.mapcontainer {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-areas: 
@@ -201,24 +211,25 @@
 
     
 
+
 @media only screen and (min-width: 600px)  {
     .grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-areas: 
-        "logomodule logomodule"
-        "powerballmodule megaballmodule"
-        "mapmodule mapmodule"
+        "logocontainer logocontainer"
+        "powerballcontainer megaballcontainer"
+        "powerballcontainer megaballcontainer"
+        "mapcontainer mapcontainer"
+ 
         ;
     }
 
-    .logomodule {
-        grid-area: logomodule;
-        min-height: 50px;
-        max-height: 100px;
+    .logocontainer {
+        grid-area: logocontainer;
     }    
    
-    .powerballmodule {
+    .powerballcontainer {
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-areas: 
@@ -241,7 +252,7 @@
     }
               
     
-    .megamillionsmodule {
+    .megamillionscontainer {
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-areas: 
@@ -263,7 +274,7 @@
         font-size: 16px;
     }
 
-.mapmodule {
+.mapcontainer {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-areas: 
@@ -274,15 +285,14 @@
     "maparea"
     "maplocations"
     ;
-   align-self: start;
    grid-column-end: span 2;
    max-width: 93ch;
    max-height: 350px;
-
 }
             .maparea {
                 grid-area: maparea;
                 background-color: rgb(125, 128, 125);
+
             }
             .maplocations {
                 grid-area: maplocations;
@@ -290,3 +300,5 @@
                 font-size: 14px;
             }
 }
+
+
