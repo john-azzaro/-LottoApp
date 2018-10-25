@@ -62,10 +62,13 @@
 //// FROM REMOVED NEWS SECTION ////////////////////////////////////////////
 
 // from displaymainpage, main (becomes conatiner because we might want to put it somewhere other than main).  if append is left off, its undefined, but default is true.
+
 function displayNewsSection(newsItems, container, append = true) {
     appendOrReplace(newsItems, container, generateNewsSection, append);
 }
 
+function displayNewsItem(newsItem) {
+}
 
 /*
 function generateNewsSection(newsItems) {
@@ -103,12 +106,28 @@ function generateNewsItem(newsItem) {
     `
 }
 */
+/////////////////////
 
+function displayDrawingItem(drawing, container) {
+}
 
 ////////////////////////////////////////////////////////////////////////
 
 
+function generateDrawingItem(drawing) {
+    // removed this because it will be in its own section <a class="neareststore" data-drawing="${drawing.name.toLowerCase()}">Find Nearest Store</a>
+    const numberList = generateNumbersList(drawing.numbers);
+    const countDown = generateCountDown(drawing.name, drawing.date);
+    return `
+    <li id="${drawing.name.toLowerCase()}listitem">
+        <h2>${drawing.name}</h2>
+            ${numberList}
+            ${countDown}
+    </li>
+    `
+}
 
+//////////////////////////////////////////////////////////////////////
 
 
    <header></header>
