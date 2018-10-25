@@ -10,9 +10,10 @@ const STORE = {
     newsItems: [],
 }
 
-//// API functions //////////////////////////////////////////////////////////////////////////////////////////////////
 
-// we add the ... put the contents of one array into another array (instead of putting the array itself in the other array)
+
+//// API functions //////////////////////////////////////////////////////////////////////////////////////////////////
+//// NOTES: The ... put the contents of one array into another array (instead of putting the array itself in the other array)
 
 function getLotteryDataFromApi() {
     getPowerballDataFromApi(function(response) {
@@ -66,7 +67,6 @@ function megaMillionsAdapter(drawings) {
     });
 }
 
-
 function splitDrawingsByName(drawings) {
     let splitDrawings = {};
     for (let i = 0; i < drawings.length; i++) {
@@ -78,9 +78,6 @@ function splitDrawingsByName(drawings) {
     }
     return splitDrawings;
 }
-
-
-
 
 function powerBallAdapter(drawings) {
     const dateIndex = 8;
@@ -98,14 +95,10 @@ function powerBallAdapter(drawings) {
 }
 
 
+
 /////// HISTORY //////////////////////////////////////////////////////////////////////////////////////////////////////
+//// use drawing adapter
 
-// from generateDrawingItem
-// 1. listen for user click on history link
-// 2. generate history section - drawing name title, need list item for each past drawing with date and numbers
-// 3. generate history item - date and numbers
-
-// use drawing adapter
 function generateHistorySection(drawingName, drawings) {
     return `
         <section id="historysection">    
@@ -116,7 +109,6 @@ function generateHistorySection(drawingName, drawings) {
          <section>
     `
 }
-
 
 function generateHistoryItem(drawing) {
 return `
@@ -130,7 +122,6 @@ return `
 
 
 ////// GENERATE  //////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 function generateNumbersList(numbers) {
     // need to use double quotes.  single quotes dont interpret so it would be a backslash and n, not a new line.
@@ -167,22 +158,6 @@ function generateNumberSection(drawings) {
     `
 }
 
-function generateNewsSection(newsItems) {
-    //
-    return `
-    <section id="newssection">
-        <h2>Lotto in the News</h2>
-        <ul id="newslist">
-            <li class="newsarticle">
-                <img class="newsimage">
-                <h3>Headline</h3>
-                <a class="readmorelink">Read More</a>
-            </li>
-        </ul>
-    </section>
-    `
-}
-
 function generateCountDown(drawingName, drawingDate) {
     const today = new Date();
     const daysLeft = 2;
@@ -198,21 +173,7 @@ function generateCountDown(drawingName, drawingDate) {
     `
 }
 
-function generateNewsItem(newsItem) {
-    //
-    return `
-    <section id="newssection">
-        <h2>Lotto in the News</h2>
-        <ul id="newslist">
-            <li class="newsarticle">
-                <img class="newsimage">
-                <h3>Headline</h3>
-                 <a class="readmorelink">Read More</a>
-            </li>
-        </ul>
-    </section>
-    `
-}
+
 
 ///// DISPLAY FUNCTIONS /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -261,8 +222,8 @@ function displayNewsItem(newsItem) {
 }
 
 
-///// INITIALIZATION //////////////////////////////////////////////////////////////////////////////////////////
 
+///// INITIALIZATION //////////////////////////////////////////////////////////////////////////////////////////
 
 function initalize() {
     getLotteryDataFromApi();

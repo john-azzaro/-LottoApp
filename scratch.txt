@@ -6,6 +6,47 @@
 
 
 
+//// Generate drawing item
+
+    <li id="${drawing.name.toLowerCase()}listitem">
+        <h2>${drawing.name}</h2>
+            ${numberList}
+            ${countDown}
+    </li>
+
+
+//// Generate number list item
+
+    <ul class="numberslist">
+        ${numberList}
+    </ul>
+
+//// Generate number section
+
+    <section id="numbersection">     
+        <ul>
+            ${generateDrawingItem(drawings.pop())}
+            ${generateHistorySection(drawings[0].name, drawings)}
+        </ul>
+    </section>
+
+
+
+//// generate history section
+
+       <section id="historysection">    
+          <h3>${drawingName} History</h3>
+            <ul>
+                ${drawings.map(generateHistoryItem).join("\n")}
+            </ul>
+         <section>
+
+//// generate history generateHistoryItem
+
+    <li>
+        <h3>${drawing.date}</h3>
+             ${generateNumbersList(drawing.numbers)}
+    </li>
 
 
 
@@ -18,14 +59,13 @@
 
 
 
+//// FROM REMOVED NEWS SECTION ////////////////////////////////////////////
 
-    <h3>Next ${drawingName} Drawing</h3>
-    <div class="countdown">
-        <span class="days">${daysLeft}</span>
-        <span class="hours">${hoursLeft}</span>
-        <span class="minutes">${minutesLeft}</span>
-    </div>
 
+/*
+function generateNewsSection(newsItems) {
+    //
+    return `
     <section id="newssection">
         <h2>Lotto in the News</h2>
         <ul id="newslist">
@@ -36,21 +76,31 @@
             </li>
         </ul>
     </section>
+    `
+}
+*/
 
 
+/*
+function generateNewsItem(newsItem) {
+    //
+    return `
+    <section id="newssection">
+        <h2>Lotto in the News</h2>
+        <ul id="newslist">
+            <li class="newsarticle">
+                <img class="newsimage">
+                <h3>Headline</h3>
+                 <a class="readmorelink">Read More</a>
+            </li>
+        </ul>
+    </section>
+    `
+}
+*/
 
 
-
-
-
-
-
-
-
-
-
-
-
+////////////////////////////////////////////////////////////////////////
 
 
 
