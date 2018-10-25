@@ -61,6 +61,11 @@
 
 //// FROM REMOVED NEWS SECTION ////////////////////////////////////////////
 
+// from displaymainpage, main (becomes conatiner because we might want to put it somewhere other than main).  if append is left off, its undefined, but default is true.
+function displayNewsSection(newsItems, container, append = true) {
+    appendOrReplace(newsItems, container, generateNewsSection, append);
+}
+
 
 /*
 function generateNewsSection(newsItems) {

@@ -207,11 +207,6 @@ function displayNumberSection(drawings, container, append = true) {
     });
 }
 
-// from displaymainpage, main (becomes conatiner because we might want to put it somewhere other than main).  if append is left off, its undefined, but default is true.
-function displayNewsSection(newsItems, container, append = true) {
-    appendOrReplace(newsItems, container, generateNewsSection, append);
-}
-
 function displayDrawingItem(drawing, container) {
 }
 
