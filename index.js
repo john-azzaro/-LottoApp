@@ -101,7 +101,7 @@ function powerBallAdapter(drawings) {
 
 function generateHistorySection(drawingName, drawings) {
     return `
-        <section class="historysection hidden">    
+        <section class="${drawingName.toLowerCase()}historysection hidden">    
           <h3>${drawingName} History</h3>
             <ul>
                 ${drawings.map(generateHistoryItem).join("\n")}
@@ -134,30 +134,39 @@ function generateNumbersList(numbers, drawingName) {
     `
 }
 
+function generateLogo() {
+    return `
+    <div class="logocontainer">
+        <div class="logo"></div>
+    </div>
+    `
+}
+
 function generateDrawingItem(drawing) {
     const numberList = generateNumbersList(drawing.numbers, drawing.name);
     const countDown = generateCountDown(drawing.name, drawing.date);
     return `
-    <li id="${drawing.name.toLowerCase()}listitem">
+  
         <h2 class="${drawing.name.toLowerCase()}name">${drawing.name}</h2>
             ${numberList}
             ${countDown}
         <div class="${drawing.name.toLowerCase()}history">
-            <a>History</a>
+            <a id="${drawing.name.toLowerCase()}historylink">History</a>
         </div>
-    </li>
+
     `
 }
 
-//    ${generateHistorySection(drawings[0].name, drawings)}
+
 function generateNumberSection(drawings) {
     return `
 
     <section class="numbersection ${drawings[0].name.toLowerCase()}container">     
-        <ul>
+      
             ${generateDrawingItem(drawings.pop())}
-        </ul>
+      
     </section>
+    ${generateHistorySection(drawings[0].name, drawings)}
     `
 }
 
@@ -218,10 +227,16 @@ function appendOrReplace(items, container, generator, append = true) {
     }
 }
 
+function displayLogo(container) {
+    $(container).append(generateLogo());
+}
+
+
 // takes the data and displays on page
 function displayMainPage(drawings, newsItems) {
     const main = $('main')
     main.empty();                                         // this empties it out so that we can do a bunch of appends
+    displayLogo(main);
     displayNumberSection(drawings, main);                 // so the "main" slot is basically to display the information
 }
 
@@ -249,10 +264,32 @@ function displayCountDown(drawing, container) {
 function displayDrawingItem(drawing, container) {
 }
 
+/////// EVENT HANDLERS //////////////////////////////////////
+
+function megaMillionsHistory() {
+    $('main').on('click', '#megamillionshistorylink', function(event) {
+        console.log('history clicked')
+        $('.megamillionshistorysection').removeClass('hidden');
+    });
+}
+
+function powerBallHistory() {
+    $('main').on('click','#powerballhistorylink', function(event) {
+        $('.powerballhistorysection').removeClass('hidden');
+    });
+}
+
 
 ///// INITIALIZATION //////////////////////////////////////////////////////////////////////////////////////////
 
+function setUpEventHandlers() {
+    megaMillionsHistory();
+    powerBallHistory();
+}
+
+
 function initalize() {
+    setUpEventHandlers();
     getLotteryDataFromApi();
 }
 
