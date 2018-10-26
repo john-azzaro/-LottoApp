@@ -97,7 +97,7 @@ function powerBallAdapter(drawings) {
 
 
 /////// HISTORY //////////////////////////////////////////////////////////////////////////////////////////////////////
-//// use drawing adapter
+//// instead of new page, history is hidden
 
 function generateHistorySection(drawingName, drawings) {
     return `
@@ -158,10 +158,6 @@ function generateNumberSection(drawings) {
             ${generateDrawingItem(drawings.pop())}
         </ul>
     </section>
-    
-
-
-
     `
 }
 
@@ -169,11 +165,42 @@ function generateCountDown(drawingName, drawingDate) {
     const today = new Date();
     const daysLeft = 2;
     return `
-    
     <div class="countdown ${drawingName.toLowerCase()}nextdrawing">
         <span class="days">Next draw in ${daysLeft} day${daysLeft === 1 ? "" : "s"}</span>
     </div>
     
+    `
+}
+
+function generateNewsSection(newsItems) {
+    //
+    return `
+    <section id="newssection">
+        <h2>Lotto in the News</h2>
+        <ul id="newslist">
+            <li class="newsarticle">
+                <img class="newsimage">
+                <h3>Headline</h3>
+                <a class="readmorelink">Read More</a>
+            </li>
+        </ul>
+    </section>
+    `
+}
+
+function generateNewsItem(newsItem) {
+    //
+    return `
+    <section id="newssection">
+        <h2>Lotto in the News</h2>
+        <ul id="newslist">
+            <li class="newsarticle">
+                <img class="newsimage">
+                <h3>Headline</h3>
+                 <a class="readmorelink">Read More</a>
+            </li>
+        </ul>
+    </section>
     `
 }
 
@@ -209,9 +236,18 @@ function displayNumberSection(drawings, container, append = true) {
     });
 }
 
+function displayNewsSection(newsItems, container, append = true) {
+    appendOrReplace(newsItems, container, generateNewsSection, append);
+}
+
+function displayNewsItem(newsItem) {
+}
+
 function displayCountDown(drawing, container) {
 }
 
+function displayDrawingItem(drawing, container) {
+}
 
 
 ///// INITIALIZATION //////////////////////////////////////////////////////////////////////////////////////////

@@ -7,13 +7,31 @@
     list-style-type: none;
 }
 
-
-
 .hidden {
     display: none;
 }
 
-/* Mobile default */
+
+
+/* MOBILE */
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    "logocontainer"
+    "powerballcontainer"
+    "megaballcontainer"
+    "mapcontainer"
+    ;
+}
+
+
+
+/*
+
+
+
 .grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -209,8 +227,8 @@
             font-size: 14px;
         }
 
-    
-
+*/  
+/*
 
 @media only screen and (min-width: 600px)  {
     .grid {
@@ -301,4 +319,4 @@
             }
 }
 
-
+*/
