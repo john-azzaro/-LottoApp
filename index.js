@@ -3,7 +3,7 @@
 const POWERBALL_URL = 'https://data.ny.gov/api/views/d6yy-54nr/rows.json';
 const MEGAMILLIONS_URL = 'https://data.ny.gov/api/views/5xaw-6ayf/rows.json';
 const POWERBALL = "Powerball";
-const MEGAMILLIONS = "Megamillions";
+const MEGAMILLIONS = "MegaMillions";
 
 const STORE = {
     drawings: [],
