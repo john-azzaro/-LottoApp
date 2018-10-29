@@ -56,6 +56,8 @@ body {
 }
 
 
+
+
 /* MOBILE */
 
 .grid {
@@ -201,6 +203,43 @@ body {
             justify-content: center;
             font-size: 16px; 
         }
+
+.powerballhistorysection {
+    background-color: rgb(155, 167, 179);
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    top: 80px;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    width: 50%;
+    height: auto;
+    text-align: center;
+    color: white;
+    min-width: 250px;
+    border: 6px solid rgb(155, 167, 179);
+}
+
+.megamillionshistorysection {
+    background-color: rgb(155, 167, 179);
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    top: 80px;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    width: 50%;
+    height: auto;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    min-width: 250px;
+    border: 6px solid rgb(155, 167, 179);
+}
+
+
+
 
 .mapcontainer {
     display: grid;

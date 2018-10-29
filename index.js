@@ -103,7 +103,7 @@ function generateHistorySection(drawingName, drawings) {
     return `
         <section class="${drawingName.toLowerCase()}historysection hidden">    
           <h3>${drawingName} History</h3>
-            <ul>
+            <ul class="historystyle">
                 ${drawings.map(generateHistoryItem).join("\n")}
             </ul>
          <section>
@@ -112,7 +112,7 @@ function generateHistorySection(drawingName, drawings) {
 
 function generateHistoryItem(drawing) {
 return `
-    <li>
+    <li class="historyitemstyle">
         <h3>${drawing.date}</h3>
              ${generateNumbersList(drawing.numbers, drawing.name)}
     </li>
@@ -181,37 +181,6 @@ function generateCountDown(drawingName, drawingDate) {
     `
 }
 
-function generateNewsSection(newsItems) {
-    //
-    return `
-    <section id="newssection">
-        <h2>Lotto in the News</h2>
-        <ul id="newslist">
-            <li class="newsarticle">
-                <img class="newsimage">
-                <h3>Headline</h3>
-                <a class="readmorelink">Read More</a>
-            </li>
-        </ul>
-    </section>
-    `
-}
-
-function generateNewsItem(newsItem) {
-    //
-    return `
-    <section id="newssection">
-        <h2>Lotto in the News</h2>
-        <ul id="newslist">
-            <li class="newsarticle">
-                <img class="newsimage">
-                <h3>Headline</h3>
-                 <a class="readmorelink">Read More</a>
-            </li>
-        </ul>
-    </section>
-    `
-}
 
 
 
@@ -251,12 +220,6 @@ function displayNumberSection(drawings, container, append = true) {
     });
 }
 
-function displayNewsSection(newsItems, container, append = true) {
-    appendOrReplace(newsItems, container, generateNewsSection, append);
-}
-
-function displayNewsItem(newsItem) {
-}
 
 function displayCountDown(drawing, container) {
 }
@@ -266,9 +229,14 @@ function displayDrawingItem(drawing, container) {
 
 /////// EVENT HANDLERS //////////////////////////////////////
 
+function goBackToApp() {
+    $('main').on('click', '#goback', function(event) {
+
+    });
+}
+
 function megaMillionsHistory() {
     $('main').on('click', '#megamillionshistorylink', function(event) {
-        console.log('history clicked')
         $('.megamillionshistorysection').removeClass('hidden');
     });
 }
