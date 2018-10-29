@@ -19,12 +19,12 @@ const STORE = {
 function getLotteryDataFromApi() {
     getPowerballDataFromApi(function(response) {
         const powerBallDrawings = powerBallAdapter(response.data);
-        STORE.drawings.push(...powerBallDrawings.slice(powerBallDrawings.length - 25));                      
+        STORE.drawings.push(...powerBallDrawings.slice(powerBallDrawings.length - 10));                      
         
         getMegaMillionsDataFromApi(function(response) {
         const megaMillionsDrawings = megaMillionsAdapter(response.data)
         console.log(megaMillionsDrawings[0]);
-        STORE.drawings.push(...megaMillionsDrawings.slice(megaMillionsDrawings.length - 25));    
+        STORE.drawings.push(...megaMillionsDrawings.slice(megaMillionsDrawings.length - 10));    
         
         displayMainPage(STORE.drawings, STORE.newsItems);
         });
