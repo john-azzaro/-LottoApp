@@ -12,6 +12,4 @@ As of the current build, LottoApp features:
 
 To be added
 * Next Draw Countdown
-* Strategy Section
-* Locations
 
