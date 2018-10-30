@@ -192,8 +192,8 @@ function generateDrawingItem(drawing) {
         <h2 class="${drawing.name.toLowerCase()}name">${drawing.name}</h2>
             ${numberList}
             ${countDown}
-        <div class="${drawing.name.toLowerCase()}history">
-            <a id="${drawing.name.toLowerCase()}historylink" class="historyhover">History</a>
+        <div class="${drawing.name.toLowerCase()}history historyhover">
+            <a id="${drawing.name.toLowerCase()}historylink">History</a>
         </div>
 
     `
@@ -202,7 +202,7 @@ function generateDrawingItem(drawing) {
 
 function generateNumberSection(drawings) {
     return `
-
+    
     <section class="numbersection ${drawings[0].name.toLowerCase()}container">          
             ${generateDrawingItem(drawings[0])}     
     </section>
@@ -221,7 +221,7 @@ function generateCountDown(drawingName, drawingDate) {
     const message = daysLeft > 0 ? `in ${daysLeft} day${daysLeft === 1 ? "" : "s"}` : "today"
     return `
     <div class="countdown ${drawingName.toLowerCase()}nextdrawing">
-        <span class="days">Next draw ${message}</span>
+        <span class="days">Next draw is ${message}</span>
     </div>
     
     `
