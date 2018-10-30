@@ -23,7 +23,7 @@ function getLotteryDataFromApi() {
         
         getMegaMillionsDataFromApi(function(response) {
         const megaMillionsDrawings = megaMillionsAdapter(response.data)
-        console.log(megaMillionsDrawings[0]);
+
         STORE.drawings.push(...megaMillionsDrawings.slice(megaMillionsDrawings.length - 8));    
         
         displayMainPage(STORE.drawings, STORE.newsItems);
@@ -95,6 +95,45 @@ function powerBallAdapter(drawings) {
 }
 
 
+////////////// countdown ///////////////
+// switch is a way to have a whole bunch of if else.
+// Megamillions – Tuesday and Friday   Powerball – wed sat
+// switch would be used when you have one criterion with multi values and you want to do a different option based on different values.
+// switch saves you a chain of else ifs ()but only if you are going through one single of criterion)
+function findNextDrawing(drawingName, date) {
+    const today = new Date();
+    if (date.getDay() === today.getDay()) {
+        return today;
+    }
+    let nextDay = 0;
+    const lastDay = date.getDay();
+    switch (drawingName) {
+        case POWERBALL:
+            if (lastDay === 6) {
+                nextDay = 3;
+            }
+            else if (lastDay === 3) {
+                nextDay = 6;
+            }
+            break;   
+        case MEGAMILLIONS:
+            if (lastDay === 5) {
+                nextDay = 2;
+            }
+            else if (lastDay === 2) {
+                nextDay = 5;
+            }
+            break;
+            default: 
+        return today;
+    }
+    while(date.getDay() !== nextDay ) {
+       console.log( new Date(date.setDate(date.getDate() + 1)));
+    }
+    return date;
+}
+
+
 
 /////// HISTORY //////////////////////////////////////////////////////////////////////////////////////////////////////
 //// instead of new page, history is hidden
@@ -104,9 +143,11 @@ function generateHistorySection(drawingName, drawings) {
     return `
         <section class="${drawingName.toLowerCase()}historysection hidden">    
           <h3>${drawingName} History</h3>
+          <br>
             <ul class="historystyle">
                 ${drawings.map(generateHistoryItem).join("\n")}
             </ul>
+          <br>
             <a id="historyexit" class="historyexitstyle"><h3>Exit</h3></a>
          <section>
     `
@@ -127,7 +168,6 @@ return `
 
 function generateNumbersList(numbers, drawingName) {
     // need to use double quotes.  single quotes dont interpret so it would be a backslash and n, not a new line.
-    console.log(drawingName);
     const numberList = numbers.map(number => { return `<li class="numberitem">${number}</li>` }).join("\n");
     return `
     <ul class="numberslist ${drawingName.toLowerCase()}numbers">
@@ -164,7 +204,7 @@ function generateNumberSection(drawings) {
     return `
 
     <section class="numbersection ${drawings[0].name.toLowerCase()}container">          
-            ${generateDrawingItem(drawings.pop())}     
+            ${generateDrawingItem(drawings[0])}     
     </section>
     ${generateHistorySection(drawings[0].name, drawings)}
     `
@@ -172,10 +212,16 @@ function generateNumberSection(drawings) {
 
 function generateCountDown(drawingName, drawingDate) {
     const today = new Date();
-    const daysLeft = 2;
+    const nextDrawing = findNextDrawing(drawingName, drawingDate);
+    const difference = nextDrawing - today;
+    console.log(today);
+    console.log(nextDrawing);
+    console.log(difference);
+    const daysLeft = Math.ceil(difference / (1000 * 60 * 60 * 24));
+    const message = daysLeft > 0 ? `in ${daysLeft} day${daysLeft === 1 ? "" : "s"}` : "today"
     return `
     <div class="countdown ${drawingName.toLowerCase()}nextdrawing">
-        <span class="days">Next draw in ${daysLeft} day${daysLeft === 1 ? "" : "s"}</span>
+        <span class="days">Next draw ${message}</span>
     </div>
     
     `
@@ -216,10 +262,9 @@ function displayNumbersList(numbers, container) {
 function displayNumberSection(drawings, container, append = true) {
     const splitDrawings = splitDrawingsByName(drawings);
     Object.keys(splitDrawings).forEach(splitDrawing => {
-        appendOrReplace(splitDrawings[splitDrawing], container, generateNumberSection, append);
+        appendOrReplace(splitDrawings[splitDrawing].reverse(), container, generateNumberSection, append);
     });
 }
-
 
 function displayCountDown(drawing, container) {
 }

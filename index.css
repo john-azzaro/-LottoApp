@@ -1,12 +1,11 @@
 * {
     box-sizing: border-box;
-    margin: 0;  /* Reset rule - sets all elements to x... helpful for making consistent designs*/
-    padding: 0;  /* Reset rule*/
+    margin: 0;  
+    padding: 0;  
     font-family: 'Roboto', sans-serif;
     list-style-type: none;
 }
 
-/* for history*/
 .hidden {
     display: none;
 }
@@ -32,7 +31,7 @@ body {
 /* powerball multiplier*/
 .numberslist li:last-child {
     color: rgb(255, 255, 255);
-    background-color: rgb(189, 126, 128);
+    background-color: rgb(204, 139, 141);
 }
 
 /* megamillions megaball*/
@@ -44,22 +43,21 @@ body {
 /* megamillions megaplier*/
 .megamillionsnumbers li:nth-last-child(1) {
     color: rgb(255, 255, 255);
-    background-color: rgb(167, 149, 70);
+    background-color: rgb(201, 170, 120);
 
 }
 
 /* powerball power ball*/
 .powerballnumbers li:nth-last-child(2) {
     color: rgb(255, 255, 255);
-    background-color: rgb(202, 49, 49);   
+    background-color: rgb(170, 79, 79);   
 }
 
 
+/* ///////// History styling ////////// */
 
 .historyexitstyle {
-    border: solid 1px white;
-    width: auto;
-    height: auto;
+   margin-top: 40px;
 }
 
 .historyexitstyle:hover {
@@ -71,7 +69,7 @@ body {
 }
 
 
-/* //////////// STYLE - DEFAULT MOBILE //////////*/
+/* //////////// STYLE - DEFAULT (MOBILE) //////////*/
 
 .grid {
     display: grid;
@@ -223,7 +221,7 @@ body {
     position: absolute;
     margin-left: auto;
     margin-right: auto;
-    top: 80px;
+    top: 15%;
     left: 0;
     right: 0;
     bottom: auto;
@@ -232,7 +230,15 @@ body {
     text-align: center;
     color: white;
     min-width: 250px;
-    border: 6px solid rgb(155, 167, 179);
+    border: 15px solid rgb(155, 167, 179);
+}
+
+.powerballhistorysection .powerballnumbers {
+    background-color: rgb(155, 167, 179);
+}
+
+.megamillionshistorysection .megamillionsnumbers {
+    background-color: rgb(155, 167, 179);
 }
 
 .megamillionshistorysection {
@@ -240,7 +246,7 @@ body {
     position: absolute;
     margin-left: auto;
     margin-right: auto;
-    top: 80px;
+    top: 15%;
     left: 0;
     right: 0;
     bottom: auto;
@@ -249,11 +255,8 @@ body {
     text-align: center;
     color: rgb(255, 255, 255);
     min-width: 250px;
-    border: 6px solid rgb(155, 167, 179);
+    border: 15px solid rgb(155, 167, 179);
 }
-
-
-
 
 .mapcontainer {
     display: grid;
@@ -291,7 +294,7 @@ body {
         }
 
 
-@media only screen and (min-width: 600px)  {
+@media only screen and (min-width: 640px)  {
     
     .grid {
         display: grid;
@@ -316,8 +319,7 @@ body {
         max-width: 400px;
         min-height: 280px;
         max-height: 250px;
-    }
-              
+    }   
     
     .megamillionscontainer {
         margin-left: 20px;
