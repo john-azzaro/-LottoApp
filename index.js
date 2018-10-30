@@ -107,7 +107,7 @@ function generateHistorySection(drawingName, drawings) {
             <ul class="historystyle">
                 ${drawings.map(generateHistoryItem).join("\n")}
             </ul>
-            <a id="historyexit"><h3>Exit</h3></a>
+            <a id="historyexit" class="historyexitstyle"><h3>Exit</h3></a>
          <section>
     `
 }
@@ -153,7 +153,7 @@ function generateDrawingItem(drawing) {
             ${numberList}
             ${countDown}
         <div class="${drawing.name.toLowerCase()}history">
-            <a id="${drawing.name.toLowerCase()}historylink">History</a>
+            <a id="${drawing.name.toLowerCase()}historylink" class="historyhover">History</a>
         </div>
 
     `
@@ -229,6 +229,12 @@ function displayDrawingItem(drawing, container) {
 
 /////// EVENT HANDLERS //////////////////////////////////////
 
+function returnFromPowerballHistory() {
+    $('main').on('click', '#historyexit', function(event) {
+        $('.powerballhistorysection').addClass('hidden');
+    });
+}
+
 function returnFromMegaMillionsHistory() {
     $('main').on('click', '#historyexit', function(event) {
         $('.megamillionshistorysection').addClass('hidden');
@@ -251,6 +257,8 @@ function powerBallHistory() {
 ///// INITIALIZATION //////////////////////////////////////////////////////////////////////////////////////////
 
 function setUpEventHandlers() {
+    returnFromPowerballHistory();
+    returnFromMegaMillionsHistory();
     megaMillionsHistory();
     powerBallHistory();
 }

@@ -11,13 +11,11 @@
     display: none;
 }
 
-
-
 body {
     background-color: rgb(245, 245, 245);
 }
 
-/* BALL STYLING */
+/* ////////// BALL STYLING ////////// */
 
 .numberslist li {
     display: inline-block;
@@ -39,8 +37,7 @@ body {
 
 /* megamillions megaball*/
 .megamillionsnumbers li:nth-last-child(2) {
-    color: rgb(255, 255, 255);
-    
+    color: rgb(255, 255, 255); 
     background-color: rgb(172, 134, 53);
 }
 
@@ -57,14 +54,24 @@ body {
     background-color: rgb(202, 49, 49);   
 }
 
-.gobackbutton {
-    border: 1px solid white;
 
+
+.historyexitstyle {
+    border: solid 1px white;
+    width: auto;
+    height: auto;
+}
+
+.historyexitstyle:hover {
+    cursor: pointer;
+}
+
+.historyhover:hover {
+    cursor: pointer;
 }
 
 
-
-/* MOBILE */
+/* //////////// STYLE - DEFAULT MOBILE //////////*/
 
 .grid {
     display: grid;
@@ -84,7 +91,8 @@ body {
     grid-template-areas: 
     "logo"
     ;   
-    padding-bottom: 20px;   
+    padding-bottom: 20px;  
+    padding-top: 15px; 
     background-color: rgb(245, 245, 245);
     list-style-type: none;
 }
@@ -115,8 +123,8 @@ body {
     margin-left: auto;
     margin-right: auto;
     max-width: 350px;
-    min-height: 150px;
-    max-height: 250px;
+    min-height: 225px;
+
     color: white;
     font-size: 16px;
 }
@@ -171,7 +179,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     max-width: 350px;
-    min-height: 150px;
+    min-height: 225px;
     max-height: 250px;
     color: white;
     font-size: 16px;
@@ -284,6 +292,7 @@ body {
 
 
 @media only screen and (min-width: 600px)  {
+    
     .grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -298,35 +307,30 @@ body {
 
     .logocontainer {
         grid-area: logocontainer;
+        padding-top: 60px; 
+        padding-bottom: 50px;
     }    
    
-    .powerballcontainer {
-       
-        width: 80%;
-        padding-bottom: 20px;
-        grid-gap: 1px; 
-        column-gap: 1px;
+    .powerballcontainer { 
         margin-right: 20px;
         max-width: 400px;
-        min-height: 150px;
+        min-height: 280px;
         max-height: 250px;
-        color: white;
-        font-size: 14px;
     }
               
     
     .megamillionscontainer {
-        width: 80%;
-        padding-bottom: 20px;
-        grid-gap: 1px; 
-        column-gap: 1px;
-        text-align: center;
         margin-left: 20px;
         max-width: 400px;
-        min-height: 150px;
+        min-height: 280px;
         max-height: 250px;
-        color: white;
-        font-size: 16px;
+    }
+
+    .numberslist li {
+        border-radius: 50%;  
+        height: 1.7em;
+        width: 1.8em;
+        padding: 5px;
     }
 
 .mapcontainer {
