@@ -11,6 +11,8 @@
     display: none;
 }
 
+
+
 body {
     background-color: rgb(245, 245, 245);
 }
@@ -55,6 +57,10 @@ body {
     background-color: rgb(202, 49, 49);   
 }
 
+.gobackbutton {
+    border: 1px solid white;
+
+}
 
 
 

@@ -19,12 +19,12 @@ const STORE = {
 function getLotteryDataFromApi() {
     getPowerballDataFromApi(function(response) {
         const powerBallDrawings = powerBallAdapter(response.data);
-        STORE.drawings.push(...powerBallDrawings.slice(powerBallDrawings.length - 10));                      
+        STORE.drawings.push(...powerBallDrawings.slice(powerBallDrawings.length - 8));                      
         
         getMegaMillionsDataFromApi(function(response) {
         const megaMillionsDrawings = megaMillionsAdapter(response.data)
         console.log(megaMillionsDrawings[0]);
-        STORE.drawings.push(...megaMillionsDrawings.slice(megaMillionsDrawings.length - 10));    
+        STORE.drawings.push(...megaMillionsDrawings.slice(megaMillionsDrawings.length - 8));    
         
         displayMainPage(STORE.drawings, STORE.newsItems);
         });
@@ -98,6 +98,7 @@ function powerBallAdapter(drawings) {
 
 /////// HISTORY //////////////////////////////////////////////////////////////////////////////////////////////////////
 //// instead of new page, history is hidden
+//<a id="historyexit"><h3>Exit</h3></a>
 
 function generateHistorySection(drawingName, drawings) {
     return `
@@ -106,6 +107,7 @@ function generateHistorySection(drawingName, drawings) {
             <ul class="historystyle">
                 ${drawings.map(generateHistoryItem).join("\n")}
             </ul>
+            <a id="historyexit"><h3>Exit</h3></a>
          <section>
     `
 }
@@ -161,10 +163,8 @@ function generateDrawingItem(drawing) {
 function generateNumberSection(drawings) {
     return `
 
-    <section class="numbersection ${drawings[0].name.toLowerCase()}container">     
-      
-            ${generateDrawingItem(drawings.pop())}
-      
+    <section class="numbersection ${drawings[0].name.toLowerCase()}container">          
+            ${generateDrawingItem(drawings.pop())}     
     </section>
     ${generateHistorySection(drawings[0].name, drawings)}
     `
@@ -229,9 +229,9 @@ function displayDrawingItem(drawing, container) {
 
 /////// EVENT HANDLERS //////////////////////////////////////
 
-function goBackToApp() {
-    $('main').on('click', '#goback', function(event) {
-
+function returnFromMegaMillionsHistory() {
+    $('main').on('click', '#historyexit', function(event) {
+        $('.megamillionshistorysection').addClass('hidden');
     });
 }
 
