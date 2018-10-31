@@ -81,6 +81,7 @@ body {
     "logocontainer"
     "powerballcontainer"
     "megamillionscontainer"
+    "footercontainer"
     ;
 }
 
@@ -263,6 +264,25 @@ body {
     outline-offset: -6px;
 }
 
+.footercontainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    "footer"
+    ;   
+    padding-bottom: 20px;  
+    padding-top: 50px; 
+    background-color: rgb(245, 245, 245);
+    font-size: 14px;
+}
+        .footerstyle {
+            grid-area: footer;           
+            margin-left: auto;
+            margin-right: auto;
+            color: rgb(192, 192, 192);
+        }
+
+
 @media only screen and (min-width: 640px)  {
     
     .grid {
@@ -272,6 +292,7 @@ body {
         "logocontainer logocontainer"
         "powerballcontainer megaballcontainer"
         "powerballcontainer megaballcontainer"
+        "footercontainer footercontainer"
         ;
     }
 
@@ -301,6 +322,10 @@ body {
         width: 1.8em;
         padding: 5px;
     }
-          
+
+    .footercontainer {
+        grid-area: footercontainer;
+    }
+
 }
 

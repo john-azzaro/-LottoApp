@@ -93,8 +93,7 @@ function powerBallAdapter(drawings) {
 }
 
 ////////////// countdown ///////////////
-// switch is a way to have a whole bunch of if else.
-// Megamillions – Tuesday and Friday   Powerball – wed sat
+// switch is a way to have a whole bunch of if-else.
 // switch would be used when you have one criterion with multi values and you want to do a different option based on different values.
 // switch saves you a chain of else ifs ()but only if you are going through one single of criterion)
 function findNextDrawing(drawingName, date) {
@@ -216,6 +215,19 @@ function generateCountDown(drawingName, drawingDate) {
 }
 
 
+/// Got to the point of generating the footer on the main page
+// need to figure out how to show the learn more page FIRST before everything else and then link back if the user needs it.
+// follow the history section example.
+function generateFooter() {
+    return `
+    <div class="footercontainer">
+        <a id="footer" class="footerstyle"><p>Learn about this app</p></a>
+    </div>
+    `
+}
+
+
+
 ///// DISPLAY FUNCTIONS /////////////////////////////////////////////////////////////////////////////////////////////
 
 // reuseable - takes a buch of items, runs the generator on the item, and if true adds to the container, if false replaces the contents of container.
@@ -232,12 +244,17 @@ function displayLogo(container) {
     $(container).append(generateLogo());
 }
 
+function displayFooter(container) {
+    $(container).append(generateFooter());
+}
+
 // takes the data and displays on page
-function displayMainPage(drawings, newsItems) {
+function displayMainPage(drawings) {
     const main = $('main')
     main.empty();                                         // this empties it out so that we can do a bunch of appends
     displayLogo(main);
     displayNumberSection(drawings, main);                 // so the "main" slot is basically to display the information
+    displayFooter(main);
 }
 
 function displayNumbersList(numbers, container) {
@@ -253,37 +270,40 @@ function displayNumberSection(drawings, container, append = true) {
 
 /////// EVENT HANDLERS //////////////////////////////////////
 
-function returnFromPowerballHistory() {
+function handleReturnFromPowerballHistory() {
     $('main').on('click', '#historyexit', function(event) {
         $('.powerballhistorysection').addClass('hidden');
     });
 }
 
-function returnFromMegaMillionsHistory() {
+function handleReturnFromMegaMillionsHistory() {
     $('main').on('click', '#historyexit', function(event) {
         $('.megamillionshistorysection').addClass('hidden');
     });
 }
 
-function megaMillionsHistory() {
+function handleMegaMillionsHistory() {
     $('main').on('click', '#megamillionshistorylink', function(event) {
         $('.megamillionshistorysection').removeClass('hidden');
     });
 }
 
-function powerBallHistory() {
+function handlePowerBallHistory() {
     $('main').on('click','#powerballhistorylink', function(event) {
         $('.powerballhistorysection').removeClass('hidden');
     });
 }
 
+
+
 ///// INITIALIZATION //////////////////////////////////////////////////////////////////////////////////////////
 
 function setUpEventHandlers() {
-    returnFromPowerballHistory();
-    returnFromMegaMillionsHistory();
-    megaMillionsHistory();
-    powerBallHistory();
+ 
+    handleReturnFromPowerballHistory();
+    handleReturnFromMegaMillionsHistory();
+    handleMegaMillionsHistory();
+    handlePowerBallHistory();
 }
 
 
