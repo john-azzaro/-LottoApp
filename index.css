@@ -2,7 +2,7 @@
     box-sizing: border-box;
     margin: 0;  
     padding: 0;  
-font-family: 'Rubik', sans-serif;
+    font-family: 'Rubik', sans-serif;
     list-style-type: none;
 }
 
@@ -56,16 +56,19 @@ body {
 
 /* ///////// History styling ////////// */
 
+
 .historyexitstyle {
    cursor: pointer;
 }
 
 .historyexitstyle:hover {
     cursor: pointer;
+    text-decoration: underline;
 }
 
 .historyhover:hover {
     cursor: pointer;
+    text-decoration: underline;
 }
 
 
@@ -78,7 +81,6 @@ body {
     "logocontainer"
     "powerballcontainer"
     "megamillionscontainer"
-    "mapcontainer"
     ;
 }
 
@@ -122,9 +124,8 @@ body {
     margin-right: auto;
     max-width: 350px;
     min-height: 225px;
-
     color: white;
-    font-size: 16px;
+    font-size: 16px;  
 }
 
         .powerballname  {
@@ -149,7 +150,7 @@ body {
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px; 
+            font-size: 15px; 
         }
         .powerballhistory {
             grid-area: powerballhistory;
@@ -157,7 +158,7 @@ body {
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 16px; 
+            font-size: 17px; 
         }
 
 .megamillionscontainer {
@@ -205,7 +206,7 @@ body {
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px; 
+            font-size: 15px; 
         }
         .megamillionshistory {
             grid-area: megamillionshistory;
@@ -213,7 +214,7 @@ body {
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 16px; 
+            font-size: 17px; 
         }
 
 .powerballhistorysection {
@@ -262,42 +263,6 @@ body {
     outline-offset: -6px;
 }
 
-.mapcontainer {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: 
-    "maparea maparea"
-    "maparea maparea"    
-    "maparea maparea"
-    "maparea maparea"
-    "maplocations maplocations"
-     ;    
-    width: 80%;
-    padding-bottom: 20px;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 350px;
-    min-height: 150px;
-    max-height: 190px;
-    color: white;
-    font-size: 16px;
-}
-        .maparea {
-            grid-area: maparea;
-            background-color: rgb(125, 128, 125);
-            font-size: 12px;
-        }
-        .maplocations {
-            grid-area: maplocations;
-            background-color: rgb(132, 176, 213);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-        }
-
-
 @media only screen and (min-width: 640px)  {
     
     .grid {
@@ -307,8 +272,6 @@ body {
         "logocontainer logocontainer"
         "powerballcontainer megaballcontainer"
         "powerballcontainer megaballcontainer"
-        "mapcontainer mapcontainer"
- 
         ;
     }
 
@@ -338,31 +301,6 @@ body {
         width: 1.8em;
         padding: 5px;
     }
-
-.mapcontainer {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-areas: 
-    "maparea"
-    "maparea"
-    "maparea" 
-    "maparea" 
-    "maparea"
-    "maplocations"
-    ;
-   grid-column-end: span 2;
-   max-width: 93ch;
-   max-height: 350px;
-}
-            .maparea {
-                grid-area: maparea;
-                background-color: rgb(125, 128, 125);
-
-            }
-            .maplocations {
-                grid-area: maplocations;
-                background-color: rgb(132, 176, 213);
-                font-size: 14px;
-            }
+          
 }
 

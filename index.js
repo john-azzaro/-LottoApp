@@ -10,8 +10,6 @@ const STORE = {
     newsItems: [],
 }
 
-
-
 //// API functions //////////////////////////////////////////////////////////////////////////////////////////////////
 //// NOTES: The ... put the contents of one array into another array (instead of putting the array itself in the other array)
 //// or said another way, the array spread operator - instead of pushing the whole array inside, it pushes all the array items in at once
@@ -94,7 +92,6 @@ function powerBallAdapter(drawings) {
     });
 }
 
-
 ////////////// countdown ///////////////
 // switch is a way to have a whole bunch of if else.
 // Megamillions – Tuesday and Friday   Powerball – wed sat
@@ -133,11 +130,7 @@ function findNextDrawing(drawingName, date) {
     return date;
 }
 
-
-
 /////// HISTORY //////////////////////////////////////////////////////////////////////////////////////////////////////
-//// instead of new page, history is hidden
-//<a id="historyexit"><h3>Exit</h3></a>
 
 function generateHistorySection(drawingName, drawings) {
     return `
@@ -161,8 +154,6 @@ return `
     </li>
     `
 }
-
-
 
 ////// GENERATE  //////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -193,16 +184,13 @@ function generateDrawingItem(drawing) {
             ${numberList}
             ${countDown}
         <div class="${drawing.name.toLowerCase()}history historyhover">
-            <a id="${drawing.name.toLowerCase()}historylink">History</a>
+            <a id="${drawing.name.toLowerCase()}historylink" class="historystyle">History</a>
         </div>
-
     `
 }
 
-
 function generateNumberSection(drawings) {
     return `
-    
     <section class="numbersection ${drawings[0].name.toLowerCase()}container">          
             ${generateDrawingItem(drawings[0])}     
     </section>
@@ -218,7 +206,7 @@ function generateCountDown(drawingName, drawingDate) {
     console.log(nextDrawing);
     console.log(difference);
     const daysLeft = Math.ceil(difference / (1000 * 60 * 60 * 24));
-    const message = daysLeft > 0 ? `in ${daysLeft} day${daysLeft === 1 ? "" : "s"}` : "today"
+    const message = daysLeft > 0 ? `in ${daysLeft} day${daysLeft === 1 ? "" : "s"}` : "today";
     return `
     <div class="countdown ${drawingName.toLowerCase()}nextdrawing">
         <span class="days">Next draw is ${message}</span>
@@ -226,8 +214,6 @@ function generateCountDown(drawingName, drawingDate) {
     
     `
 }
-
-
 
 
 ///// DISPLAY FUNCTIONS /////////////////////////////////////////////////////////////////////////////////////////////
@@ -246,7 +232,6 @@ function displayLogo(container) {
     $(container).append(generateLogo());
 }
 
-
 // takes the data and displays on page
 function displayMainPage(drawings, newsItems) {
     const main = $('main')
@@ -264,12 +249,6 @@ function displayNumberSection(drawings, container, append = true) {
     Object.keys(splitDrawings).forEach(splitDrawing => {
         appendOrReplace(splitDrawings[splitDrawing].reverse(), container, generateNumberSection, append);
     });
-}
-
-function displayCountDown(drawing, container) {
-}
-
-function displayDrawingItem(drawing, container) {
 }
 
 /////// EVENT HANDLERS //////////////////////////////////////
@@ -297,7 +276,6 @@ function powerBallHistory() {
         $('.powerballhistorysection').removeClass('hidden');
     });
 }
-
 
 ///// INITIALIZATION //////////////////////////////////////////////////////////////////////////////////////////
 
