@@ -210,10 +210,8 @@ function generateCountDown(drawingName, drawingDate) {
     <div class="countdown ${drawingName.toLowerCase()}nextdrawing">
         <span class="days">Next draw is ${message}</span>
     </div>
-    
     `
 }
-
 
 /// Got to the point of generating the footer on the main page
 // need to figure out how to show the learn more page FIRST before everything else and then link back if the user needs it.
@@ -299,7 +297,6 @@ function handlePowerBallHistory() {
 ///// INITIALIZATION //////////////////////////////////////////////////////////////////////////////////////////
 
 function setUpEventHandlers() {
- 
     handleReturnFromPowerballHistory();
     handleReturnFromMegaMillionsHistory();
     handleMegaMillionsHistory();

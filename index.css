@@ -71,7 +71,6 @@ body {
     text-decoration: underline;
 }
 
-
 /* //////////// STYLE - DEFAULT (MOBILE) //////////*/
 
 .grid {
@@ -84,7 +83,6 @@ body {
     "footercontainer"
     ;
 }
-
 
 .logocontainer {
     display: grid;
@@ -223,17 +221,17 @@ body {
     position: absolute;
     margin-left: auto;
     margin-right: auto;
-    top: 15%;
+    top: 8%;
     left: 0;
     right: 0;
     bottom: auto;
-    width: 50%;
+    width: 80%;
     height: auto;
     text-align: center;
     color: white;
     min-width: 250px;
     border: 15px solid rgb(155, 167, 179);
-    outline: 2px solid rgb(219, 188, 188);
+    outline: 1px solid rgb(245, 245, 245);
     outline-offset: -6px;
 }
 
@@ -250,17 +248,17 @@ body {
     position: absolute;
     margin-left: auto;
     margin-right: auto;
-    top: 15%;
+    top: 8%;
     left: 0;
     right: 0;
     bottom: auto;
-    width: 50%;
+    width: 80%;
     height: auto;
     text-align: center;
     color: rgb(255, 255, 255);
     min-width: 250px;
     border: 15px solid rgb(155, 167, 179);
-    outline: 2px solid rgb(224, 202, 165);
+    outline: 1px solid rgb(245, 245, 245);
     outline-offset: -6px;
 }
 
@@ -273,7 +271,7 @@ body {
     padding-bottom: 20px;  
     padding-top: 50px; 
     background-color: rgb(245, 245, 245);
-    font-size: 14px;
+    font-size: 12px;
 }
         .footerstyle {
             grid-area: footer;           
@@ -296,6 +294,18 @@ body {
         ;
     }
 
+    .megamillionshistorysection {
+        top: 15%;
+        width: 50%;
+        min-width: 600px;
+     }
+
+     .powerballhistorysection {
+        top: 15%;
+        width: 50%;
+        min-width: 600px;
+    }
+
     .logocontainer {
         grid-area: logocontainer;
         padding-top: 60px; 
@@ -305,14 +315,14 @@ body {
     .powerballcontainer { 
         margin-right: 20px;
         max-width: 400px;
-        min-height: 280px;
+        min-height: 325px;
         max-height: 250px;
     }   
     
     .megamillionscontainer {
         margin-left: 20px;
         max-width: 400px;
-        min-height: 280px;
+        min-height: 325px;
         max-height: 250px;
     }
 
