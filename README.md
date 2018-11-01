@@ -7,9 +7,9 @@ The Lotto App is an initial build of a special lottery application that provides
 As of the current build, LottoApp features:
 * Current MegaMillions results
 * Current Powerball results
-* MegaMillions history (25)
-* Powerball history (25)
-
-To be added
 * Next Draw Countdown
+* MegaMillions history 8)
+* Powerball history (8)
+
+
 
