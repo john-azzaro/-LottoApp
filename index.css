@@ -323,6 +323,16 @@ body {
     font-size: 20px;
 }
 
+.landingwindow * {
+    margin-bottom: 4ex;
+}
+
+.landingwindow p:nth-child(even) {
+    font-size: larger;
+    font-weight: bold;
+    margin-bottom: 1ex;
+}
+
 .landinginfo {
     position: absolute;
     margin-left: auto;
