@@ -166,7 +166,7 @@ function generateNumbersList(numbers, drawingName) {
     `
 }
 
-function generateLogo() {
+function generateLogoSection() {
     return `
     <header role="banner" class="logocontainer">
         <div class="logo"></div>
@@ -178,7 +178,6 @@ function generateDrawingItem(drawing) {
     const numberList = generateNumbersList(drawing.numbers, drawing.name);
     const countDown = generateCountDown(drawing.name, drawing.date);
     return `
-  
         <h2 class="${drawing.name.toLowerCase()}name">${drawing.name}</h2>
             ${numberList}
             ${countDown}
@@ -216,10 +215,21 @@ function generateCountDown(drawingName, drawingDate) {
 /// Got to the point of generating the footer on the main page
 // need to figure out how to show the learn more page FIRST before everything else and then link back if the user needs it.
 // follow the history section example.
-function generateFooter() {
+//        
+
+function generateFooterSection() {
     return `
     <footer role="contentinfo" class="footercontainer">
-        <a id="footer" class="footerstyle"><p>Learn about this app</p></a>
+        <div class="landingwindow">    
+            <p>this is what the info says</p>
+            <p>this is what the info says</p>
+            <p>this is what the info says</p>
+            <p>this is what the info says</p>
+            <p>this is what the info says</p>
+        <br>
+        <a id="landingexit" class="landingexitstyle">Start the App!</a>
+        </div>
+        <a id="landingenter" class="footerstyle footerstyleenter">Learn more about this app</a>
     </footer>
     `
 }
@@ -239,11 +249,11 @@ function appendOrReplace(items, container, generator, append = true) {
 }
 
 function displayLogo(container) {
-    $(container).append(generateLogo());
+    $(container).append(generateLogoSection());
 }
 
 function displayFooter(container) {
-    $(container).append(generateFooter());
+    $(container).append(generateFooterSection());
 }
 
 // takes the data and displays on page
@@ -267,6 +277,18 @@ function displayNumberSection(drawings, container, append = true) {
 }
 
 /////// EVENT HANDLERS //////////////////////////////////////
+
+function handleEnterLandingPage() {
+    $('main').on('click', '#landingenter', function(event) {
+        $('.landingwindow').removeClass('hidden');
+    });
+}
+
+function handleExitLandingPage() {
+    $('main').on('click', '#landingexit', function(event) {
+        $('.landingwindow').addClass('hidden');
+    });
+}
 
 function handleReturnFromPowerballHistory() {
     $('main').on('click', '#historyexit', function(event) {
@@ -295,6 +317,8 @@ function handlePowerBallHistory() {
 ///// INITIALIZATION //////////////////////////////////////////////////////////////////////////////////////////
 
 function setUpEventHandlers() {
+    handleEnterLandingPage();
+    handleExitLandingPage();
     handleReturnFromPowerballHistory();
     handleReturnFromMegaMillionsHistory();
     handleMegaMillionsHistory();
