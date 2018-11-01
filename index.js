@@ -133,7 +133,7 @@ function findNextDrawing(drawingName, date) {
 
 function generateHistorySection(drawingName, drawings) {
     return `
-        <section class="${drawingName.toLowerCase()}historysection hidden">    
+        <section role="region" class="${drawingName.toLowerCase()}historysection hidden">    
           <h3>${drawingName} History</h3>
           <br>
             <ul class="historystyle">
@@ -168,9 +168,9 @@ function generateNumbersList(numbers, drawingName) {
 
 function generateLogo() {
     return `
-    <div class="logocontainer">
+    <header role="banner" class="logocontainer">
         <div class="logo"></div>
-    </div>
+    </header>
     `
 }
 
@@ -190,7 +190,7 @@ function generateDrawingItem(drawing) {
 
 function generateNumberSection(drawings) {
     return `
-    <section class="numbersection ${drawings[0].name.toLowerCase()}container">          
+    <section role="region" class="numbersection ${drawings[0].name.toLowerCase()}container">          
             ${generateDrawingItem(drawings[0])}     
     </section>
     ${generateHistorySection(drawings[0].name, drawings)}
@@ -218,9 +218,9 @@ function generateCountDown(drawingName, drawingDate) {
 // follow the history section example.
 function generateFooter() {
     return `
-    <div class="footercontainer">
+    <footer role="contentinfo" class="footercontainer">
         <a id="footer" class="footerstyle"><p>Learn about this app</p></a>
-    </div>
+    </footer>
     `
 }
 
@@ -291,8 +291,6 @@ function handlePowerBallHistory() {
         $('.powerballhistorysection').removeClass('hidden');
     });
 }
-
-
 
 ///// INITIALIZATION //////////////////////////////////////////////////////////////////////////////////////////
 
