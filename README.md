@@ -8,7 +8,7 @@ As of the current build, LottoApp features:
 * Current MegaMillions results
 * Current Powerball results
 * Next Draw Countdown
-* MegaMillions history 85)
+* MegaMillions history 8)
 * Powerball history (8)
 
 
