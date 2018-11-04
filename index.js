@@ -229,25 +229,16 @@ function generateFooterSection() {
     <footer role="contentinfo" class="footercontainer">
         <div class="landingwindow">    
             <h1>Lotto Brainy</h1>
-            
             <section role="region" class="landinginfo">
-            <p>Welcome to Lotto Brainy, an app that brings together useful information about two popular lotteries in the United States, Powerball and MegaMillions.  But what can Lotto Brainy do for you?</p>
-            
+            <p>Welcome to Lotto Brainy, an app that brings together useful information about two popular lotteries in the United States, Powerball and MegaMillions. But what can Lotto Brainy do for you?</p>      
             <p>Lotto Brainy shows the most current drawing!</p>
-            
             <p>Within each lottery section, you'll find the most current lottery drawing, including the winning numbers, powerball or megaball, and the respective multiplers.</p>
-            
             <p>Lotto Brainy tells when the next drawing is!</p>
-            
             <p>Since both lotteries draw twice a week on different days, this app has conveniently provides a daily countdown.</p>
-           
             <p>Lotto Brainy shows a list of previous draws!</p>
-            
-            <p>If you need to find out the previous drawing numbers, Lotto Brainy provides all information from the last 8 drawings.  Just click the "History" link to get the details!</p>
-            
+            <p>If you need to find out the previous drawing numbers, Lotto Brainy provides all information from the last 8 drawings. Just click the "History" link to get the details!</p>
             <a id="landingexit" class="landingexitstyle">Start the App!</a>
             </section>
-            
         </div>
         <a id="landingenter" class="footerstyle footerstyleenter">Learn more about this app</a>
     </footer>
