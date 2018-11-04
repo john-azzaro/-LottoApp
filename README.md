@@ -11,5 +11,8 @@ As of the current build, LottoApp features:
 * MegaMillions history 8)
 * Powerball history (8)
 
+## What technology does LottoApp use?
+Lotto app uses HTML, CSS, JavaScript, and jQuery
+
 
 
