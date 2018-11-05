@@ -10,20 +10,13 @@ const STORE = {
     newsItems: [],
 }
 
-//// API functions //////////////////////////////////////////////////////////////////////////////////////////////////
-//// NOTES: The ... put the contents of one array into another array (instead of putting the array itself in the other array)
-//// or said another way, the array spread operator - instead of pushing the whole array inside, it pushes all the array items in at once
-
 function getLotteryDataFromApi() {
     getPowerballDataFromApi(function(response) {
         const powerBallDrawings = powerBallAdapter(response.data);
         STORE.drawings.push(...powerBallDrawings.slice(powerBallDrawings.length - 8));                      
-        
         getMegaMillionsDataFromApi(function(response) {
         const megaMillionsDrawings = megaMillionsAdapter(response.data)
-
         STORE.drawings.push(...megaMillionsDrawings.slice(megaMillionsDrawings.length - 8));    
-        
         displayMainPage(STORE.drawings, STORE.newsItems);
         });
     });
@@ -92,10 +85,7 @@ function powerBallAdapter(drawings) {
     });
 }
 
-////////////// countdown ///////////////
-// switch is a way to have a whole bunch of if-else.
-// switch would be used when you have one criterion with multi values and you want to do a different option based on different values.
-// switch saves you a chain of else ifs ()but only if you are going through one single of criterion)
+// countdown 
 function findNextDrawing(drawingName, date) {
     const today = new Date();
     if (date.getDay() === today.getDay()) {
@@ -129,8 +119,6 @@ function findNextDrawing(drawingName, date) {
     return date;
 }
 
-/////// HISTORY //////////////////////////////////////////////////////////////////////////////////////////////////////
-
 function generateHistorySection(drawingName, drawings) {
     return `
         <section role="region" class="${drawingName.toLowerCase()}historysection hidden">    
@@ -160,8 +148,6 @@ function generateHistoryItem(drawing) {
     </li>
     `
 }
-
-////// GENERATE  //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function generateNumbersList(numbers, drawingName) {
     // need to use double quotes.  single quotes dont interpret so it would be a backslash and n, not a new line.
@@ -219,11 +205,6 @@ function generateCountDown(drawingName, drawingDate) {
     `
 }
 
-/// Got to the point of generating the footer on the main page
-// need to figure out how to show the learn more page FIRST before everything else and then link back if the user needs it.
-// follow the history section example.
-//        
-
 function generateFooterSection() {
     return `
     <footer role="contentinfo" class="footercontainer">
@@ -245,11 +226,6 @@ function generateFooterSection() {
     `
 }
 
-
-
-///// DISPLAY FUNCTIONS /////////////////////////////////////////////////////////////////////////////////////////////
-
-// reuseable - takes a buch of items, runs the generator on the item, and if true adds to the container, if false replaces the contents of container.
 function appendOrReplace(items, container, generator, append = true) {
     const html = generator(items);
     if (append) {
@@ -267,12 +243,11 @@ function displayFooter(container) {
     $(container).append(generateFooterSection());
 }
 
-// takes the data and displays on page
 function displayMainPage(drawings) {
     const main = $('main')
-    main.empty();                                         // this empties it out so that we can do a bunch of appends
+    main.empty();                                         
     displayLogo(main);
-    displayNumberSection(drawings, main);                 // so the "main" slot is basically to display the information
+    displayNumberSection(drawings, main);                 
     displayFooter(main);
 }
 
@@ -286,8 +261,6 @@ function displayNumberSection(drawings, container, append = true) {
         appendOrReplace(splitDrawings[splitDrawing].reverse(), container, generateNumberSection, append);
     });
 }
-
-/////// EVENT HANDLERS //////////////////////////////////////
 
 function handleEnterLandingPage() {
     $('main').on('click', '#landingenter', function(event) {
@@ -324,8 +297,6 @@ function handlePowerBallHistory() {
         $('.powerballhistorysection').removeClass('hidden');
     });
 }
-
-///// INITIALIZATION //////////////////////////////////////////////////////////////////////////////////////////
 
 function setUpEventHandlers() {
     handleEnterLandingPage();
