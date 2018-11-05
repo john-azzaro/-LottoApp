@@ -1,4 +1,5 @@
 # LottoApp
+See it Live: https://john-azzaro.github.io/LottoApp/
 
 ## What is LottoApp?
 The Lotto App is an initial build of a special lottery application that providess the user with up-to-date information on two popular national lotteries; the Powerball and Megamillions.  
