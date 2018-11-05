@@ -5,6 +5,8 @@ See it Live: https://john-azzaro.github.io/LottoApp/
 With Lotto Brainy, you can check important information about Powerball and Megamillions from the convience of your desktop of mobile device.
 
 ## Screenshots
+![lottobrainy main](https://user-images.githubusercontent.com/37447586/48018915-fdcd7300-e0e6-11e8-850e-a7ae71883a5b.png)
+![lottobrainy history](https://user-images.githubusercontent.com/37447586/48018936-0f167f80-e0e7-11e8-800e-b6eea0f39034.png)
 
 ## What are Lotto Brainy's features?
 After reading the Lotto Brainy landing page which outlines the primary features of the app, you'll see two lottery "modules".  Lotto Brainy was built with future expandability in mind, so additional lotteries could be incorporated into the app but for now the two lotteries you (the user) will see are MegaMillions and Powerball. 
