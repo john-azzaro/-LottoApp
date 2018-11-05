@@ -82,7 +82,7 @@ function powerBallAdapter(drawings) {
         numbers.push(drawing[multiplierIndex])
         return {
                 name: POWERBALL,
-                date: new Date(drawing[dateIndex]),   // makes a new date out of the date string format
+                date: new Date(drawing[dateIndex]),  
                 numbers
         }
     });
@@ -218,7 +218,7 @@ function generateFooterSection() {
             <p>Lotto Brainy shows the most current drawing!</p>
             <p>Within each lottery section, you'll find the most current lottery drawing, including the winning numbers, powerball or megaball, and the respective multiplers.</p>
             <p>Lotto Brainy tells when the next drawing is!</p>
-            <p>Since both lotteries draw twice a week on different days, this app has conveniently provides a daily countdown.</p>
+            <p>Since both lotteries draw twice a week on different days, this app provides a convenient daily countdown.</p>
             <p>Lotto Brainy shows a list of previous draws!</p>
             <p>If you need to find out the previous drawing numbers, Lotto Brainy provides all information from the last 8 drawings. Just click the "History" link to get the details!</p>
             <a id="landingexit" class="landingexitstyle">Start the App!</a>
