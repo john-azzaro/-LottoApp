@@ -14,12 +14,12 @@ Each lottery has their own special "module" that contain the following features:
 * MegaMillions history (shows previous 8 drawings)
 * Powerball history (shows previous 8 drawings)
 
-## What technology does Lotto Brainy use?
-Lotto Brainy uses HTML, CSS, JavaScript, and jQuery
-
 To take a look at the history of each lottery, all you need to do is click on the "History" link and you'll be shown the past 8 drawings.  To exit the history section, all you need to do is click "Exit" at the bottom of the window.
 
 If you would like to go back to the landing page for Lotto Brainy, click the "Learn more about this app" link below the current modules.
+
+## What technology does Lotto Brainy use?
+Lotto Brainy uses HTML, CSS, JavaScript, and jQuery
 
 ## Screenshots
 ![lottobrainy main](https://user-images.githubusercontent.com/37447586/48018915-fdcd7300-e0e6-11e8-850e-a7ae71883a5b.png)
