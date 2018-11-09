@@ -21,7 +21,6 @@ function getLotteryDataFromApi() {
         
         getMegaMillionsDataFromApi(function(response) {
         const megaMillionsDrawings = megaMillionsAdapter(response.data)
-
         STORE.drawings.push(...megaMillionsDrawings.slice(megaMillionsDrawings.length - 8));    
         
         displayMainPage(STORE.drawings, STORE.newsItems);
