@@ -218,11 +218,6 @@ function generateCountDown(drawingName, drawingDate) {
     `
 }
 
-/// Got to the point of generating the footer on the main page
-// need to figure out how to show the learn more page FIRST before everything else and then link back if the user needs it.
-// follow the history section example.
-//        
-
 function generateFooterSection() {
     return `
     <footer role="contentinfo" class="footercontainer">
