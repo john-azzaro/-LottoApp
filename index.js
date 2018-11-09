@@ -10,6 +10,10 @@ const STORE = {
     newsItems: [],
 }
 
+//// API functions //////////////////////////////////////////////////////////////////////////////////////////////////
+//// NOTES: The ... put the contents of one array into another array (instead of putting the array itself in the other array)
+//// or said another way, the array spread operator - instead of pushing the whole array inside, it pushes all the array items in at once
+
 function getLotteryDataFromApi() {
     getPowerballDataFromApi(function(response) {
         const powerBallDrawings = powerBallAdapter(response.data);
@@ -81,13 +85,16 @@ function powerBallAdapter(drawings) {
         numbers.push(drawing[multiplierIndex])
         return {
                 name: POWERBALL,
-                date: new Date(drawing[dateIndex]),  
+                date: new Date(drawing[dateIndex]),   // makes a new date out of the date string format
                 numbers
         }
     });
 }
 
-// countdown //
+////////////// countdown ///////////////
+// switch is a way to have a whole bunch of if-else.
+// switch would be used when you have one criterion with multi values and you want to do a different option based on different values.
+// switch saves you a chain of else ifs ()but only if you are going through one single of criterion)
 function findNextDrawing(drawingName, date) {
     const today = new Date();
     if (date.getDay() === today.getDay()) {
@@ -121,6 +128,8 @@ function findNextDrawing(drawingName, date) {
     return date;
 }
 
+/////// HISTORY //////////////////////////////////////////////////////////////////////////////////////////////////////
+
 function generateHistorySection(drawingName, drawings) {
     return `
         <section role="region" class="${drawingName.toLowerCase()}historysection hidden">    
@@ -150,6 +159,8 @@ function generateHistoryItem(drawing) {
     </li>
     `
 }
+
+////// GENERATE  //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function generateNumbersList(numbers, drawingName) {
     // need to use double quotes.  single quotes dont interpret so it would be a backslash and n, not a new line.
@@ -205,7 +216,12 @@ function generateCountDown(drawingName, drawingDate) {
         <span class="days">Next draw is ${message}</span>
     </div>
     `
-}    
+}
+
+/// Got to the point of generating the footer on the main page
+// need to figure out how to show the learn more page FIRST before everything else and then link back if the user needs it.
+// follow the history section example.
+//        
 
 function generateFooterSection() {
     return `
@@ -217,7 +233,7 @@ function generateFooterSection() {
             <p>Lotto Brainy shows the most current drawing!</p>
             <p>Within each lottery section, you'll find the most current lottery drawing, including the winning numbers, powerball or megaball, and the respective multiplers.</p>
             <p>Lotto Brainy tells when the next drawing is!</p>
-            <p>Since both lotteries draw twice a week on different days, this app provides a convenient daily countdown.</p>
+            <p>Since both lotteries draw twice a week on different days, this app has conveniently provides a daily countdown.</p>
             <p>Lotto Brainy shows a list of previous draws!</p>
             <p>If you need to find out the previous drawing numbers, Lotto Brainy provides all information from the last 8 drawings. Just click the "History" link to get the details!</p>
             <a id="landingexit" class="landingexitstyle">Start the App!</a>
@@ -228,6 +244,11 @@ function generateFooterSection() {
     `
 }
 
+
+
+///// DISPLAY FUNCTIONS /////////////////////////////////////////////////////////////////////////////////////////////
+
+// reuseable - takes a buch of items, runs the generator on the item, and if true adds to the container, if false replaces the contents of container.
 function appendOrReplace(items, container, generator, append = true) {
     const html = generator(items);
     if (append) {
@@ -245,11 +266,12 @@ function displayFooter(container) {
     $(container).append(generateFooterSection());
 }
 
+// takes the data and displays on page
 function displayMainPage(drawings) {
     const main = $('main')
-    main.empty();                                         
+    main.empty();                                         // this empties it out so that we can do a bunch of appends
     displayLogo(main);
-    displayNumberSection(drawings, main);                 
+    displayNumberSection(drawings, main);                 // so the "main" slot is basically to display the information
     displayFooter(main);
 }
 
@@ -263,6 +285,8 @@ function displayNumberSection(drawings, container, append = true) {
         appendOrReplace(splitDrawings[splitDrawing].reverse(), container, generateNumberSection, append);
     });
 }
+
+/////// EVENT HANDLERS //////////////////////////////////////
 
 function handleEnterLandingPage() {
     $('main').on('click', '#landingenter', function(event) {
@@ -300,6 +324,8 @@ function handlePowerBallHistory() {
     });
 }
 
+///// INITIALIZATION //////////////////////////////////////////////////////////////////////////////////////////
+
 function setUpEventHandlers() {
     handleEnterLandingPage();
     handleExitLandingPage();
@@ -308,6 +334,7 @@ function setUpEventHandlers() {
     handleMegaMillionsHistory();
     handlePowerBallHistory();
 }
+
 
 function initalize() {
     setUpEventHandlers();
