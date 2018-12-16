@@ -1,5 +1,5 @@
 # LottoApp (Lotto Brainy)
-See it Live: https://john-azzaro.github.io/LottoApp/
+Want to see it Live: https://john-azzaro.github.io/LottoApp/
 
 ## What is LottoApp?
 With Lotto Brainy, you can check important information about Powerball and Megamillions from the convience of your desktop or mobile device.
