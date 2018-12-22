@@ -22,8 +22,8 @@ If you would like to go back to the landing page for Lotto Brainy, click the "Le
 Lotto Brainy uses HTML, CSS, JavaScript, and jQuery
 
 ## What API's does this App use?
-[Lottery Powerball Winning Numbers (via data.gov)](https://catalog.data.gov/dataset/lottery-powerball-winning-numbers-beginning-2010)
-[Lottery Megamillions Winning Numbers (via data.gov)](https://catalog.data.gov/dataset/lottery-mega-millions-winning-numbers-beginning-2002)
+* [Lottery Powerball Winning Numbers (via data.gov)](https://catalog.data.gov/dataset/lottery-powerball-winning-numbers-beginning-2010)
+* [Lottery Megamillions Winning Numbers (via data.gov)](https://catalog.data.gov/dataset/lottery-mega-millions-winning-numbers-beginning-2002)
 
 ## Screenshots
 ![lottobrainy main](https://user-images.githubusercontent.com/37447586/48018915-fdcd7300-e0e6-11e8-850e-a7ae71883a5b.png)
