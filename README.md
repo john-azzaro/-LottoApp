@@ -21,6 +21,12 @@ If you would like to go back to the landing page for Lotto Brainy, click the "Le
 ## What technology does Lotto Brainy use?
 Lotto Brainy uses HTML, CSS, JavaScript, and jQuery
 
+## What API's does this App use?
+[Lottery Powerball Winning Numbers (via data.gov)](https://catalog.data.gov/dataset/lottery-powerball-winning-numbers-beginning-2010)
+[a link](https://github.com/user/repo/blob/branch/other_file.md)
+[a link](https://github.com/user/repo/blob/branch/other_file.md)
+[a link](https://github.com/user/repo/blob/branch/other_file.md)
+
 ## Screenshots
 ![lottobrainy main](https://user-images.githubusercontent.com/37447586/48018915-fdcd7300-e0e6-11e8-850e-a7ae71883a5b.png)
 ![lottobrainy history](https://user-images.githubusercontent.com/37447586/48018936-0f167f80-e0e7-11e8-800e-b6eea0f39034.png)
