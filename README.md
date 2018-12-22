@@ -23,9 +23,7 @@ Lotto Brainy uses HTML, CSS, JavaScript, and jQuery
 
 ## What API's does this App use?
 [Lottery Powerball Winning Numbers (via data.gov)](https://catalog.data.gov/dataset/lottery-powerball-winning-numbers-beginning-2010)
-[a link](https://github.com/user/repo/blob/branch/other_file.md)
-[a link](https://github.com/user/repo/blob/branch/other_file.md)
-[a link](https://github.com/user/repo/blob/branch/other_file.md)
+[Lottery Megamillions Winning Numbers (via data.gov)](https://catalog.data.gov/dataset/lottery-mega-millions-winning-numbers-beginning-2002)
 
 ## Screenshots
 ![lottobrainy main](https://user-images.githubusercontent.com/37447586/48018915-fdcd7300-e0e6-11e8-850e-a7ae71883a5b.png)
