@@ -7,7 +7,6 @@ const MEGAMILLIONS = "MegaMillions";
 
 const STORE = {
     drawings: [],
-    newsItems: [],
 }
 
 //// API functions //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -59,12 +58,14 @@ function splitDrawingsByName(drawings) {
     return splitDrawings;
 }
 
+// need to reverse the numbers array
 function megaMillionsAdapter(drawings) {
     const dateIndex = 8;
     const numbersIndex = 9;
     const megaBallIndex = 10;
     const multiplierIndex = 11;
     return drawings.map((drawing) => {
+       console.log('multiplier', drawing[multiplierIndex])
         const megaBallMultiplier = [drawing[megaBallIndex], drawing[multiplierIndex]];
         const numbers = drawing[numbersIndex].split(" ")
         numbers.push(...megaBallMultiplier)
@@ -73,7 +74,7 @@ function megaMillionsAdapter(drawings) {
             date: new Date(drawing[dateIndex]),
             numbers
         }
-    });
+    }).reverse();
 }
 
 function powerBallAdapter(drawings) {
@@ -88,7 +89,7 @@ function powerBallAdapter(drawings) {
                 date: new Date(drawing[dateIndex]),   // makes a new date out of the date string format
                 numbers
         }
-    });
+    }).reverse();
 }
 
 ////////////// countdown ///////////////
@@ -123,7 +124,7 @@ function findNextDrawing(drawingName, date) {
         return today;
     }
     while(date.getDay() !== nextDay ) {
-       console.log( new Date(date.setDate(date.getDate() + 1)));
+        date = new Date(date.setDate(date.getDate() + 1));
     }
     return date;
 }
@@ -206,9 +207,6 @@ function generateCountDown(drawingName, drawingDate) {
     const today = new Date();
     const nextDrawing = findNextDrawing(drawingName, drawingDate);
     const difference = nextDrawing - today;
-    console.log(today);
-    console.log(nextDrawing);
-    console.log(difference);
     const daysLeft = Math.ceil(difference / (1000 * 60 * 60 * 24));
     const message = daysLeft > 0 ? `in ${daysLeft} day${daysLeft === 1 ? "" : "s"}` : "today";
     return `
