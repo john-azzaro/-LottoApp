@@ -67,7 +67,7 @@ function megaMillionsAdapter(drawings) {
             date: new Date(drawing[dateIndex]),
             numbers
         }
-    });
+    }).reverse();
 }
 
 function powerBallAdapter(drawings) {
@@ -82,7 +82,7 @@ function powerBallAdapter(drawings) {
                 date: new Date(drawing[dateIndex]),   // makes a new date out of the date string format
                 numbers
         }
-    });
+    }).reverse();
 }
 
 // countdown 
