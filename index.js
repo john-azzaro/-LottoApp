@@ -7,16 +7,19 @@ const MEGAMILLIONS = "MegaMillions";
 
 const STORE = {
     drawings: [],
-    newsItems: [],
 }
+
+//// API functions //////////////////////////////////////////////////////////////////////////////////////////////////
 
 function getLotteryDataFromApi() {
     getPowerballDataFromApi(function(response) {
         const powerBallDrawings = powerBallAdapter(response.data);
         STORE.drawings.push(...powerBallDrawings.slice(powerBallDrawings.length - 8));                      
+        
         getMegaMillionsDataFromApi(function(response) {
         const megaMillionsDrawings = megaMillionsAdapter(response.data)
         STORE.drawings.push(...megaMillionsDrawings.slice(megaMillionsDrawings.length - 8));    
+        
         displayMainPage(STORE.drawings, STORE.newsItems);
         });
     });
@@ -53,12 +56,14 @@ function splitDrawingsByName(drawings) {
     return splitDrawings;
 }
 
+// need to reverse the numbers array
 function megaMillionsAdapter(drawings) {
     const dateIndex = 8;
     const numbersIndex = 9;
     const megaBallIndex = 10;
     const multiplierIndex = 11;
     return drawings.map((drawing) => {
+       console.log('multiplier', drawing[multiplierIndex])
         const megaBallMultiplier = [drawing[megaBallIndex], drawing[multiplierIndex]];
         const numbers = drawing[numbersIndex].split(" ")
         numbers.push(...megaBallMultiplier)
@@ -79,13 +84,14 @@ function powerBallAdapter(drawings) {
         numbers.push(drawing[multiplierIndex])
         return {
                 name: POWERBALL,
-                date: new Date(drawing[dateIndex]),   // makes a new date out of the date string format
+                date: new Date(drawing[dateIndex]),   
                 numbers
         }
     }).reverse();
 }
 
-// countdown 
+////////////// countdown ///////////////
+
 function findNextDrawing(drawingName, date) {
     const today = new Date();
     if (date.getDay() === today.getDay()) {
@@ -114,10 +120,12 @@ function findNextDrawing(drawingName, date) {
         return today;
     }
     while(date.getDay() !== nextDay ) {
-       console.log( new Date(date.setDate(date.getDate() + 1)));
+        date = new Date(date.setDate(date.getDate() + 1));
     }
     return date;
 }
+
+/////// HISTORY //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function generateHistorySection(drawingName, drawings) {
     return `
@@ -149,8 +157,9 @@ function generateHistoryItem(drawing) {
     `
 }
 
+////// GENERATE  //////////////////////////////////////////////////////////////////////////////////////////////////////
+
 function generateNumbersList(numbers, drawingName) {
-    // need to use double quotes.  single quotes dont interpret so it would be a backslash and n, not a new line.
     const numberList = numbers.map(number => { return `<li class="numberitem">${number}</li>` }).join("\n");
     return `
     <ul class="numberslist ${drawingName.toLowerCase()}numbers">
@@ -193,9 +202,6 @@ function generateCountDown(drawingName, drawingDate) {
     const today = new Date();
     const nextDrawing = findNextDrawing(drawingName, drawingDate);
     const difference = nextDrawing - today;
-    console.log(today);
-    console.log(nextDrawing);
-    console.log(difference);
     const daysLeft = Math.ceil(difference / (1000 * 60 * 60 * 24));
     const message = daysLeft > 0 ? `in ${daysLeft} day${daysLeft === 1 ? "" : "s"}` : "today";
     return `
@@ -225,6 +231,10 @@ function generateFooterSection() {
     </footer>
     `
 }
+
+
+
+///// DISPLAY FUNCTIONS /////////////////////////////////////////////////////////////////////////////////////////////
 
 function appendOrReplace(items, container, generator, append = true) {
     const html = generator(items);
@@ -262,6 +272,8 @@ function displayNumberSection(drawings, container, append = true) {
     });
 }
 
+/////// EVENT HANDLERS //////////////////////////////////////
+
 function handleEnterLandingPage() {
     $('main').on('click', '#landingenter', function(event) {
         $('.landingwindow').removeClass('hidden');
@@ -297,6 +309,8 @@ function handlePowerBallHistory() {
         $('.powerballhistorysection').removeClass('hidden');
     });
 }
+
+///// INITIALIZATION //////////////////////////////////////////////////////////////////////////////////////////
 
 function setUpEventHandlers() {
     handleEnterLandingPage();
