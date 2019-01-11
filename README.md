@@ -1,5 +1,5 @@
 # LottoApp (Lotto Brainy)
-See it Live: https://john-azzaro.github.io/LottoApp/
+Want to see it Live: https://john-azzaro.github.io/LottoApp/
 
 ## What is LottoApp?
 With Lotto Brainy, you can check important information about Powerball and Megamillions from the convience of your desktop or mobile device.
@@ -20,6 +20,10 @@ If you would like to go back to the landing page for Lotto Brainy, click the "Le
 
 ## What technology does Lotto Brainy use?
 Lotto Brainy uses HTML, CSS, JavaScript, and jQuery
+
+## What API's does this App use?
+* [Lottery Powerball Winning Numbers (via data.gov)](https://catalog.data.gov/dataset/lottery-powerball-winning-numbers-beginning-2010)
+* [Lottery Megamillions Winning Numbers (via data.gov)](https://catalog.data.gov/dataset/lottery-mega-millions-winning-numbers-beginning-2002)
 
 ## Screenshots
 ![lottobrainy main](https://user-images.githubusercontent.com/37447586/48018915-fdcd7300-e0e6-11e8-850e-a7ae71883a5b.png)

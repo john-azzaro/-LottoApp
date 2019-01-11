@@ -10,8 +10,6 @@ const STORE = {
 }
 
 //// API functions //////////////////////////////////////////////////////////////////////////////////////////////////
-//// NOTES: The ... put the contents of one array into another array (instead of putting the array itself in the other array)
-//// or said another way, the array spread operator - instead of pushing the whole array inside, it pushes all the array items in at once
 
 function getLotteryDataFromApi() {
     getPowerballDataFromApi(function(response) {
@@ -86,16 +84,14 @@ function powerBallAdapter(drawings) {
         numbers.push(drawing[multiplierIndex])
         return {
                 name: POWERBALL,
-                date: new Date(drawing[dateIndex]),   // makes a new date out of the date string format
+                date: new Date(drawing[dateIndex]),   
                 numbers
         }
     }).reverse();
 }
 
 ////////////// countdown ///////////////
-// switch is a way to have a whole bunch of if-else.
-// switch would be used when you have one criterion with multi values and you want to do a different option based on different values.
-// switch saves you a chain of else ifs ()but only if you are going through one single of criterion)
+
 function findNextDrawing(drawingName, date) {
     const today = new Date();
     if (date.getDay() === today.getDay()) {
@@ -164,7 +160,6 @@ function generateHistoryItem(drawing) {
 ////// GENERATE  //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function generateNumbersList(numbers, drawingName) {
-    // need to use double quotes.  single quotes dont interpret so it would be a backslash and n, not a new line.
     const numberList = numbers.map(number => { return `<li class="numberitem">${number}</li>` }).join("\n");
     return `
     <ul class="numberslist ${drawingName.toLowerCase()}numbers">
@@ -241,7 +236,6 @@ function generateFooterSection() {
 
 ///// DISPLAY FUNCTIONS /////////////////////////////////////////////////////////////////////////////////////////////
 
-// reuseable - takes a buch of items, runs the generator on the item, and if true adds to the container, if false replaces the contents of container.
 function appendOrReplace(items, container, generator, append = true) {
     const html = generator(items);
     if (append) {
@@ -259,12 +253,11 @@ function displayFooter(container) {
     $(container).append(generateFooterSection());
 }
 
-// takes the data and displays on page
 function displayMainPage(drawings) {
     const main = $('main')
-    main.empty();                                         // this empties it out so that we can do a bunch of appends
+    main.empty();                                         
     displayLogo(main);
-    displayNumberSection(drawings, main);                 // so the "main" slot is basically to display the information
+    displayNumberSection(drawings, main);                 
     displayFooter(main);
 }
 
