@@ -2,7 +2,7 @@
 Want to see it Live: https://john-azzaro.github.io/LottoApp/
 
 ## What is LottoApp?
-With Lotto Brainy, you can check important information about Powerball and Megamillions from the convience of your desktop or mobile device.
+Lotto Brainy is an entirely dynamic, full responsive lottery drawing application that simplifies the user experience in finding Powerball and Megamillions drawings. 
 
 ## What are Lotto Brainy's features?
 After reading the Lotto Brainy landing page which outlines the primary features of the app, you'll see two lottery "modules".  Lotto Brainy was built with future expandability in mind, so additional lotteries could be incorporated into the app but for now the two lotteries you (the user) will see are MegaMillions and Powerball. 
