@@ -1,6 +1,3 @@
-# LottoApp (Lotto Brainy)
-Want to see it Live: https://john-azzaro.github.io/LottoApp/
-
 ## What is LottoApp?
 Lotto Brainy is an entirely dynamic, full responsive lottery drawing application that simplifies the user experience in finding Powerball and Megamillions drawings. 
 
